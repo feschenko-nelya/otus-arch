@@ -10,13 +10,12 @@ class Equation
 public:
     Equation();
 
-    bool solve(const double a, const double b, const double c);
-    const std::vector<double> &getRoots() const;
+    std::vector<double> solve(const double a, const double b, const double c);
 
 private:
     static const double E;
 
-    std::vector<double> _roots;
+    double getDiscriminant(const double a, const double b, const double c) const;
 
 };
 

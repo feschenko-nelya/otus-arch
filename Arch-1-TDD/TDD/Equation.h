@@ -15,7 +15,21 @@ public:
     std::vector<double> solve(const double a, const double b, const double c);
 
 private:
-    double getDiscriminant(const double a, const double b, const double c) const;
+    struct Coefficients
+    {
+        double a = 0.0;
+        double b = 0.0;
+        double c = 0.0;
+    };
+
+    enum class RootNumber
+    {
+        First = 1,
+        Second = -1
+    };
+
+    double getDiscriminant(const Coefficients &coeffs) const;
+    double getRoot(const Coefficients &coeffs, const double D, const RootNumber rootNumber) const;
 
 };
 

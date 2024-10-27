@@ -10,7 +10,7 @@ class Equation
 public:
     Equation();
 
-    void solve(const double a, const double b, const double c);
+    bool solve(const double a, const double b, const double c);
     const std::vector<double> &getRoots() const;
 
 private:

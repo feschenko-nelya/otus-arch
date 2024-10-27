@@ -1,6 +1,8 @@
 #include "Equation.h"
 
+#include <cmath>
 #include <cstdlib>
+#include <iostream>
 
 const double Equation::E {0.000001};
 
@@ -16,17 +18,35 @@ std::vector<double> Equation::solve(const double a, const double b, const double
         return {};
     }
 
-    const double D = getDiscriminant(a, b, c);
+    const Coefficients coeffs{a, b, c};
 
-    if (std::abs(D) < E)
+    const double D = getDiscriminant(coeffs);
+
+    if (D < -E)
     {
         return {};
+    }
+
+    if (D > E)
+    {
+        std::vector<double> roots;
+        roots.reserve(2);
+
+        roots.push_back(getRoot(coeffs, D, RootNumber::First));
+        roots.push_back(getRoot(coeffs, D, RootNumber::Second));
+
+        return roots;
     }
 
     return {};
 }
 
-double Equation::getDiscriminant(const double a, const double b, const double c) const
+double Equation::getDiscriminant(const Coefficients &coeffs) const
 {
-    return b * b - 4 * a * c;
+    return coeffs.b * coeffs.b - 4 * coeffs.a * coeffs.c;
+}
+
+double Equation::getRoot(const Coefficients &coeffs, const double D, const RootNumber rootNumber) const
+{
+    return (-coeffs.b + static_cast<int>(rootNumber) * std::sqrt(D)) / (2 * coeffs.a);
 }

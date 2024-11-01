@@ -55,7 +55,7 @@ double Equation::getDiscriminant(const Coefficients &coeffs) const
 
 double Equation::getRoot(const Coefficients &coeffs, const double D, const RootNumber rootNumber) const
 {
-    return (-coeffs.b + static_cast<int>(rootNumber) * std::sqrt(D)) / (2 * coeffs.a);
+    return (-coeffs.b + static_cast<double>(rootNumber) * std::sqrt(D)) / (2.0 * coeffs.a);
 }
 
 

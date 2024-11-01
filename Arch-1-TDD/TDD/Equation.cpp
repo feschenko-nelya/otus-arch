@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <iostream>
 
+#include "EquationException.h"
+
 const double Equation::E {0.000001};
 
 Equation::Equation()
@@ -29,6 +31,11 @@ std::vector<double> Equation::solve(const double a, const double b, const double
 
     if (D > E)
     {
+        if (std::abs(a) < E)
+        {
+            throw ZeroCoefficientException();
+        }
+
         std::vector<double> roots;
         roots.reserve(2);
 
@@ -50,3 +57,5 @@ double Equation::getRoot(const Coefficients &coeffs, const double D, const RootN
 {
     return (-coeffs.b + static_cast<int>(rootNumber) * std::sqrt(D)) / (2 * coeffs.a);
 }
+
+

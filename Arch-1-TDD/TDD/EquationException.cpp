@@ -10,5 +10,5 @@ ZeroCoefficientException::ZeroCoefficientException()
 
 const char* ZeroCoefficientException::what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT
 {
-    return "Коэффициент а не должен быть равен 0.";
+    return "Cofficient 'a' must be nonzero.";
 }

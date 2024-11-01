@@ -33,6 +33,16 @@ TEST(TestGroup, SubTest_TwoRoots)
     ASSERT_TRUE((rootInt == -1) && (std::abs(root2) - std::abs(rootInt) < Equation::E));
 }
 
+TEST(TestGroup, CoeffAIsNotNull)
+{
+    // Коэффициент a не может быть равен 0. В этом случае solve выбрасывает исключение.
+
+    Equation eqt;
+
+    ASSERT_THROW(eqt.solve(0, 1, 1), ZeroCoefficientException);
+}
+
+
 int main(int argc, char *argv[])
 {
     ::testing::InitGoogleTest(&argc, argv);

@@ -12,6 +12,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_executable(TDD
   main.cpp
   Equation.h Equation.cpp
+  EquationException.h EquationException.cpp
 )
 
 include(GNUInstallDirs)

@@ -6,9 +6,9 @@ int main(int argc, char *argv[])
 {
     Equation x2;
 
-    const double a = 1;
-    const double b = 2;
-    const double c = 1;
+    const double a = 0.000005;
+    const double b = 0.00001;
+    const double c = 0.000003;
 
     std::cout << "Coefficients: A = " << a << "; B = " << b << "; C = " << c << "; \n";
 

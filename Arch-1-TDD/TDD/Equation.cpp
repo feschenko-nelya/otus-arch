@@ -67,5 +67,3 @@ double Equation::getRoot(const Coefficients &coeffs, const double D, const RootN
 {
     return (-coeffs.b + static_cast<double>(rootNumber) * std::sqrt(D)) / (2.0 * coeffs.a);
 }
-
-

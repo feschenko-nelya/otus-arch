@@ -27,14 +27,9 @@ TEST(TestGroup, SubTest_TwoRoots)
     const double root2 = roots[1];
 
     int rootInt = static_cast<int>(root1);
-
-    std::cout << "root int = " << rootInt << " " << root1 << "\n";
-
     ASSERT_TRUE((rootInt == 1) && (std::abs(root1 - rootInt) < Equation::E));
 
     rootInt = static_cast<int>(root2);
-
-    std::cout << "root int = " << rootInt << " " << root2 << "\n";
     ASSERT_TRUE((rootInt == -1) && (std::abs(root2) - std::abs(rootInt) < Equation::E));
 }
 

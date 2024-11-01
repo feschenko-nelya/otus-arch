@@ -45,6 +45,16 @@ std::vector<double> Equation::solve(const double a, const double b, const double
         return roots;
     }
 
+    if (D < E)
+    {
+        std::vector<double> roots;
+        roots.reserve(1);
+
+        roots.push_back(getRoot(coeffs, D, RootNumber::First));
+
+        return roots;
+    }
+
     return {};
 }
 

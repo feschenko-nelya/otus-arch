@@ -45,6 +45,16 @@ std::vector<double> Equation::solve(const double a, const double b, const double
         return roots;
     }
 
+    if (D < E)
+    {
+        std::vector<double> roots;
+        roots.reserve(1);
+
+        roots.push_back(getRoot(coeffs, D, RootNumber::First));
+
+        return roots;
+    }
+
     return {};
 }
 
@@ -55,7 +65,7 @@ double Equation::getDiscriminant(const Coefficients &coeffs) const
 
 double Equation::getRoot(const Coefficients &coeffs, const double D, const RootNumber rootNumber) const
 {
-    return (-coeffs.b + static_cast<int>(rootNumber) * std::sqrt(D)) / (2 * coeffs.a);
+    return (-coeffs.b + static_cast<double>(rootNumber) * std::sqrt(D)) / (2.0 * coeffs.a);
 }
 
 

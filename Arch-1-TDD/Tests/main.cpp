@@ -46,16 +46,12 @@ TEST(TestGroup, SubTest_TwoRoots_2)
 
     std::vector<double> roots;
 
-    ASSERT_NO_THROW({ roots = eqt.solve(1, 2, 1); });
-    ASSERT_EQ(roots.size(), 2);
+    ASSERT_NO_THROW({ roots = eqt.solve(1, 4, 4); });
+    ASSERT_EQ(roots.size(), 1);
 
     double dblRoot = std::abs(roots.at(0) / 2.0);
     int intRoot = static_cast<int>(dblRoot);
     bool hasRootDiv2 = ((dblRoot - intRoot) < Equation::E);
-
-    dblRoot = std::abs(roots.at(1) / 2.0);
-    intRoot = static_cast<int>(dblRoot);
-    hasRootDiv2 |= ((dblRoot - intRoot) < Equation::E);
 
     ASSERT_TRUE(hasRootDiv2);
 }

@@ -24,14 +24,14 @@ std::vector<double> Equation::solve(const double a, const double b, const double
 
     const double D = getDiscriminant(coeffs);
 
-    if (D < -E)
+    if (D <= -E)
     {
         return {};
     }
 
     if (D > E)
     {
-        if (std::abs(a) < E)
+        if (std::abs(a) <= E)
         {
             throw ZeroCoefficientException();
         }
@@ -45,7 +45,7 @@ std::vector<double> Equation::solve(const double a, const double b, const double
         return roots;
     }
 
-    if (D < E)
+    if (D <= E)
     {
         std::vector<double> roots;
         roots.reserve(1);

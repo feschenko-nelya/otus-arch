@@ -13,7 +13,7 @@ TEST(TestGroup, SubTest_x2p1)
 
     std::vector<double> roots;
     ASSERT_NO_THROW({ roots = eqt.solve(1, 0, 1); });
-    ASSERT_TRUE(eqt.solve(1, 0, 1).size() == 0);
+    ASSERT_TRUE(roots.size() == 0);
 }
 
 TEST(TestGroup, SubTest_TwoRoots)
@@ -28,14 +28,27 @@ TEST(TestGroup, SubTest_TwoRoots)
     ASSERT_NO_THROW({ roots = eqt.solve(1, 0, -1); });
     ASSERT_TRUE(roots.size() == 2);
 
-    const double root1 = roots[0];
-    const double root2 = roots[1];
+    double absRoot1 = std::abs(roots[0]);
+    double absRoot2 = std::abs(roots[1]);
 
-    int rootInt = static_cast<int>(root1);
-    ASSERT_TRUE((rootInt == 1) && (std::abs(root1 - rootInt) < Equation::E));
+    ASSERT_TRUE((absRoot1 >= (1.0 - Equation::E))
+                && (absRoot1 <= (1.0 + Equation::E)));
 
-    rootInt = static_cast<int>(root2);
-    ASSERT_TRUE((rootInt == -1) && (std::abs(root2) - std::abs(rootInt) < Equation::E));
+    ASSERT_TRUE((absRoot2 >= (1.0 - Equation::E))
+                && (absRoot2 <= (1.0 + Equation::E)));
+
+    // b >= epsilon
+    ASSERT_NO_THROW({ roots = eqt.solve(1, Equation::E, -1); });
+    ASSERT_TRUE(roots.size() == 2);
+
+    absRoot1 = std::abs(roots.at(0));
+    absRoot2 = std::abs(roots.at(1));
+
+    ASSERT_TRUE((absRoot1 >= (1.0 - Equation::E))
+                && (absRoot1 <= (1.0 + Equation::E)));
+
+    ASSERT_TRUE((absRoot2 >= (1.0 - Equation::E))
+                && (absRoot2 <= (1.0 + Equation::E)));
 }
 
 TEST(TestGroup, SubTest_TwoRoots_2)
@@ -74,6 +87,33 @@ TEST(TestGroup, DiscriminantIsLessThanEpsilon)
 
     ASSERT_EQ(roots.size(), 1);
 }
+
+TEST(TestGroup, DoubleTypeCoefficients)
+{
+    Equation eqt;
+
+    // Корней нет.
+    std::vector<double> roots;
+    ASSERT_NO_THROW({ roots = eqt.solve(1.0001, 0.0001, 1.001); });
+    ASSERT_TRUE(roots.size() == 0);
+
+    // Два корня
+    ASSERT_NO_THROW({ roots = eqt.solve(1.00001, 0.00001, -1.00001); });
+    ASSERT_TRUE(roots.size() == 2);
+
+    ASSERT_NO_THROW({ roots = eqt.solve(1, 0.005, -1.005); });
+    ASSERT_TRUE(roots.size() == 2);
+
+    // Один корень кратности 2
+    ASSERT_NO_THROW({ roots = eqt.solve(1.00001, 2.00002, 1.00001); });
+    ASSERT_EQ(roots.size(), 1);
+    ASSERT_EQ(roots.at(0), -1);
+
+    // исключение для случая а = Epsilon
+    ASSERT_THROW({ eqt.solve(Equation::E, 1, 1); },
+                 ZeroCoefficientException);
+}
+
 
 int main(int argc, char *argv[])
 {

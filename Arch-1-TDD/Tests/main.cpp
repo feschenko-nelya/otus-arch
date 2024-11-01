@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 
 #include "../TDD/Equation.h"
+#include "../TDD/EquationException.h"
 
 TEST(TestGroup, SubTest_x2p1)
 {
@@ -39,7 +40,8 @@ TEST(TestGroup, CoeffAIsNotNull)
 
     Equation eqt;
 
-    ASSERT_THROW(eqt.solve(0, 1, 1), ZeroCoefficientException);
+    ASSERT_THROW({ eqt.solve(0, 1, 1); },
+                 ZeroCoefficientException);
 }
 
 

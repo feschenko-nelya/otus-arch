@@ -20,7 +20,8 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(gtest_version main.cpp ../TDD/Equation.h ../TDD/Equation.cpp)
+add_executable(gtest_version main.cpp ../TDD/Equation.h ../TDD/Equation.cpp
+    ../TDD/EquationException.cpp ../TDD/EquationException.h)
 
 target_include_directories(
         gtest_version

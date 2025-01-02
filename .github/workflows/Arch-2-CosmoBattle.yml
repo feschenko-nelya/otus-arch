@@ -6,13 +6,13 @@ on:
   #label:
   #  types: [created, edited]
   push:
-    branches: [ "main" ]
-    #paths:
-    #- 'Arch-2-CosmoBattle/**'
+    branches: [ "master" ]
+    paths:
+    - 'Arch-2-CosmoBattle/**'
   pull_request:
-    branches: [ "main" ]
-    #paths:
-    #- 'Arch-2-CosmoBattle/**'
+    branches: [ "master" ]
+    paths:
+    - 'Arch-2-CosmoBattle/**'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)

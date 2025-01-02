@@ -6,11 +6,13 @@ on:
   label: 
     types: [created, edited]
   push:
-    #branches: [ "main" ]
+    branches: [ "master" ]
     paths:
     - 'Arch-1-TDD/**'
-  #pull_request:
-    #branches: [ "main" ]
+  pull_request:
+    branches: [ "master" ]
+    paths:
+    - 'Arch-1-TDD/**'
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)

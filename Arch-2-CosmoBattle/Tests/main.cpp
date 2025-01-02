@@ -1,16 +1,19 @@
 #include <gtest/gtest.h>
 
+#include "../CosmoBattle/UObject.h"
+#include "../CosmoBattle/UObjectException.h"
+
 TEST(TestGroup, TestPropertyExceptions)
 {
     UObject obj;
 
     std::any value;
 
-    ASSERT_THROW(obj.getProperty("value"), UObjectException);
+    ASSERT_THROW(obj.getProperty("value"), UObjectAbsentPropertyException);
 
     obj.setProperty("value", 5);
 
-    ASSERT_NO_THROW(obj.getProperty("value"), UObjectException);
+    ASSERT_NO_THROW(obj.getProperty("value"));
 }
 
 TEST(TestGroup, TestPropertyExist)

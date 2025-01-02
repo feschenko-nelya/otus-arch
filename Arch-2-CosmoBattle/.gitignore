@@ -1,0 +1,5 @@
+CosmoBattle/CMakeLists.txt.user
+Tests/CMakeLists.txt.user
+build-CosmoBattle-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/*
+build-Tests-Desktop_Qt_5_14_2_MinGW_64_bit-Debug/*
+googletest/*

@@ -21,7 +21,7 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(Tests main.cpp
+add_executable(Tests TestUObject.cpp TestMovingObject.cpp
     ../CosmoBattle/UObject.cpp ../CosmoBattle/UObject.h
     ../CosmoBattle/UObjectException.cpp ../CosmoBattle/UObjectException.h
 )
@@ -34,4 +34,5 @@ target_include_directories(
 
 target_link_libraries(Tests gtest_main gmock_main)
 
-add_test(NAME TestGroup COMMAND Tests)
+add_test(NAME UObject COMMAND Tests)
+add_test(NAME MovingObject COMMAND Tests)

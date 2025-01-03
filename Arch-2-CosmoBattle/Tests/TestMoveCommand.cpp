@@ -2,6 +2,7 @@
 
 #include "../CosmoBattle/UObject.h"
 #include "../CosmoBattle/MovingObject.h"
+#include "../CosmoBattle/MoveCommand.h"
 
 TEST(MovingCommand, Execute)
 {
@@ -11,7 +12,7 @@ TEST(MovingCommand, Execute)
 
     MovingObject movingObject(&object);
 
-    MovingCommand moveCmd(&movingObject);
+    MoveCommand moveCmd(&movingObject);
 
     moveCmd.execute();
 

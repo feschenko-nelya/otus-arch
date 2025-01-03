@@ -13,6 +13,9 @@ add_executable(CosmoBattle
   main.cpp
   UObject.h UObject.cpp
   UObjectException.cpp UObjectException.h
+  MoveCommand.h MoveCommand.cpp
+  MovingObject.h MovingObject.cpp
+  ICommand.h
 )
 
 include(GNUInstallDirs)

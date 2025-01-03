@@ -12,7 +12,7 @@ Angle RotatingObject::getAngle() const
 
 Angle RotatingObject::getAngularVelocity() const
 {
-    return std::any_cast<Angle>(_object->getProperty("angularVelocity"));
+    return std::any_cast<Angle>(_object->getProperty("angular_velocity"));
 }
 
 void RotatingObject::setAngle(const Angle &angle)

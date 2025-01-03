@@ -3,7 +3,7 @@
 #include "../CosmoBattle/UObject.h"
 #include "../CosmoBattle/UObjectException.h"
 #include "../CosmoBattle/RotatingObject.h"
-#include "../CosmoBattle/MoveCommand.h"
+#include "../CosmoBattle/RotateCommand.h"
 
 TEST(RotateCommand, Execute)
 {

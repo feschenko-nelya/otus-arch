@@ -28,6 +28,7 @@ add_executable(Tests TestUObject.cpp
     ../CosmoBattle/MovingObject.cpp ../CosmoBattle/MovingObject.h
     ../CosmoBattle/MoveCommand.cpp ../CosmoBattle/MoveCommand.h
     ../CosmoBattle/RotatingObject.h ../CosmoBattle/RotatingObject.cpp
+    ../CosmoBattle/RotateCommand.h ../CosmoBattle/RotateCommand.cpp
     TestMovingObject.cpp
     TestMoveCommand.cpp
     TestRotatingObject.cpp

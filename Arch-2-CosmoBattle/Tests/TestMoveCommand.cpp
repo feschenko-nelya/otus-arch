@@ -1,10 +1,11 @@
 #include <gtest/gtest.h>
 
 #include "../CosmoBattle/UObject.h"
+#include "../CosmoBattle/UObjectException.h"
 #include "../CosmoBattle/MovingObject.h"
 #include "../CosmoBattle/MoveCommand.h"
 
-TEST(MovingCommand, Execute)
+TEST(MoveCommand, Execute)
 {
     UObject object;
     object.setProperty("location", Vector{12, 5});
@@ -20,4 +21,41 @@ TEST(MovingCommand, Execute)
 
     EXPECT_EQ(location.x, 5);
     EXPECT_EQ(location.y, 8);
+}
+
+TEST(MoveCommand, GetLocationException)
+{
+    UObject object;
+    object.setProperty("location1", Vector{12, 5});
+    object.setProperty("velocity", Vector{-7, 3});
+
+    MovingObject movingObject(&object);
+
+    MoveCommand moveCmd(&movingObject);
+
+    ASSERT_THROW(moveCmd.execute(), UObjectAbsentPropertyException);
+}
+
+TEST(MoveCommand, GetVelocityException)
+{
+    UObject object;
+    object.setProperty("location", Vector{12, 5});
+    object.setProperty("velocity1", Vector{-7, 3});
+
+    MovingObject movingObject(&object);
+
+    MoveCommand moveCmd(&movingObject);
+
+    ASSERT_THROW(moveCmd.execute(), UObjectAbsentPropertyException);
+}
+
+TEST(MoveCommand, SetLocationException)
+{
+    UObject object;
+
+    MovingObject movingObject(&object);
+
+    MoveCommand moveCmd(&movingObject);
+
+    ASSERT_THROW(moveCmd.execute(), UObjectAbsentPropertyException);
 }

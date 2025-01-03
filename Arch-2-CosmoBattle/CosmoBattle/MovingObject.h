@@ -2,20 +2,9 @@
 #define MOVINGOBJECT_H
 
 #include "UObject.h"
+#include "DataStructs.h"
+
 #include <variant>
-
-struct Vector
-{
-    int x = 0;
-    int y = 0;
-};
-
-struct Angle
-{
-    float value;
-
-    float getRad() const;
-};
 
 class IMovingObject
 {

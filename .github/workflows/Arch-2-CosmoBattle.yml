@@ -6,11 +6,11 @@ on:
   #label:
   #  types: [created, edited]
   push:
-    branches: [ $default-branch ]
+    branches: [ "main" ]
     #paths:
     #- 'Arch-2-CosmoBattle/**'
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ "main" ]
     #paths:
     #- 'Arch-2-CosmoBattle/**'
 

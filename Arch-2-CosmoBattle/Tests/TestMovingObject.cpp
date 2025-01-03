@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "../CosmoBattle/UObject.h"
+#include "../CosmoBattle/MovingObject.h"
 
 TEST(MovingObject, GetLocation)
 {
@@ -11,8 +12,8 @@ TEST(MovingObject, GetLocation)
 
     Vector location = movingObject.getLocation();
 
-    ASSERT_TRUE(location.x == 12);
-    ASSERT_TRUE(location.y == 5);
+    EXPECT_EQ(location.x, 12);
+    EXPECT_EQ(location.y, 5);
 }
 
 TEST(MovingObject, SetLocation)
@@ -22,27 +23,23 @@ TEST(MovingObject, SetLocation)
 
     MovingObject movingObject(&object);
 
-    movingObject.setLocation(Vector{15, 8});
+    movingObject.setLocation(Vector{5, 8});
 
     Vector location = movingObject.getLocation();
 
-    ASSERT_TRUE(location.x == 15);
-    ASSERT_TRUE(location.y == 8);
+    EXPECT_EQ(location.x, 5);
+    EXPECT_EQ(location.y, 8);
 }
 
 TEST(MovingObject, GetVelocity)
 {
     UObject object;
-    object.setProperty("location", Vector{12, 5});
     object.setProperty("velocity", Vector{-7, 3});
-    object.setProperty("angle", 0);
 
     MovingObject movingObject(&object);
 
-    movingObject.getVelocity();
-
     Vector velocity = movingObject.getVelocity();
 
-    ASSERT_TRUE(velocity.x == 5);
-    ASSERT_TRUE(velocity.y == 8);
+    EXPECT_EQ(velocity.x, -7);
+    EXPECT_EQ(velocity.y, 3);
 }

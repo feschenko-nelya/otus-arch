@@ -31,6 +31,7 @@ add_executable(Tests TestUObject.cpp
     TestMovingObject.cpp
     TestMoveCommand.cpp
     TestRotatingObject.cpp
+    TestRotateCommand.cpp
 )
 
 target_include_directories(

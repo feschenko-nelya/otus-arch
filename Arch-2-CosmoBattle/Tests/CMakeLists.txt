@@ -28,6 +28,7 @@ add_executable(Tests TestUObject.cpp
     ../CosmoBattle/MoveCommand.cpp ../CosmoBattle/MoveCommand.h
     TestMovingObject.cpp
     TestMoveCommand.cpp
+    TestRotatingObject.cpp
 )
 
 target_include_directories(
@@ -41,3 +42,4 @@ target_link_libraries(Tests gtest_main gmock_main)
 add_test(NAME UObject COMMAND Tests)
 add_test(NAME MovingObject COMMAND Tests)
 add_test(NAME MoveCommand COMMAND Tests)
+add_test(NAME RotatingObject COMMAND Tests)

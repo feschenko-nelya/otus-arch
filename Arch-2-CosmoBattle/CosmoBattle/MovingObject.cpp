@@ -23,5 +23,9 @@ void MovingObject::setLocation(const Vector &location)
 
 Vector MovingObject::getVelocity()
 {
-    return std::any_cast<Vector>(_object->getProperty("velocity"));
+    Vector velocity = std::any_cast<Vector>(_object->getProperty("velocity"));
+    Angle angle = std::any_cast<Angle>(_object->getProperty("angle"));
+
+    return {static_cast<int>(velocity.x * cos(angle.getRad())),
+            static_cast<int>(velocity.y * sin(angle.getRad()))};
 }

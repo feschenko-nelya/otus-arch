@@ -21,9 +21,11 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(Tests TestUObject.cpp TestMovingObject.cpp
+add_executable(Tests TestUObject.cpp
     ../CosmoBattle/UObject.cpp ../CosmoBattle/UObject.h
     ../CosmoBattle/UObjectException.cpp ../CosmoBattle/UObjectException.h
+    ../CosmoBattle/MovingObject.cpp ../CosmoBattle/MovingObject.h
+    TestMovingObject.cpp
 )
 
 target_include_directories(

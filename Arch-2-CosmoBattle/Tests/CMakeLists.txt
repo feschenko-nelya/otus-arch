@@ -22,6 +22,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 
 add_executable(Tests TestUObject.cpp
+    ../CosmoBattle/DataStructs.cpp ../CosmoBattle/DataStructs.h
     ../CosmoBattle/UObject.cpp ../CosmoBattle/UObject.h
     ../CosmoBattle/UObjectException.cpp ../CosmoBattle/UObjectException.h
     ../CosmoBattle/MovingObject.cpp ../CosmoBattle/MovingObject.h

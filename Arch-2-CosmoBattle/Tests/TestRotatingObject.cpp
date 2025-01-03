@@ -20,7 +20,7 @@ TEST(RotatingObject, GetAngularVelocity)
 {
     UObject object;
     object.setProperty("angle", Angle{45});
-    object.setProperty("angularVelocity", Angle{1});
+    object.setProperty("angular_velocity", Angle{1});
 
     RotatingObject rotatingObject(&object);
 
@@ -33,7 +33,7 @@ TEST(RotatingObject, SetAngle)
 {
     UObject object;
     object.setProperty("angle", Angle{45});
-    object.setProperty("angularVelocity", Angle{1});
+    object.setProperty("angular_velocity", Angle{1});
 
     RotatingObject rotatingObject(&object);
 

@@ -12,7 +12,7 @@ struct Angle
     float value;
 
     float getRad() const;
-    Angle plus(const Angle &angle);
+    Angle plus(const Angle &angle) const;
 };
 
 #endif // DATASTRUCTS_H

@@ -35,11 +35,12 @@ TEST(MovingObject, GetVelocity)
 {
     UObject object;
     object.setProperty("velocity", Vector{-7, 3});
+    object.setProperty("angle", Angle{0});
 
     MovingObject movingObject(&object);
 
     Vector velocity = movingObject.getVelocity();
 
     EXPECT_EQ(velocity.x, -7);
-    EXPECT_EQ(velocity.y, 3);
+    EXPECT_EQ(velocity.y, 0);
 }

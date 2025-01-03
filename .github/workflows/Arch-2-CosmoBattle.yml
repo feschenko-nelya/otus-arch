@@ -3,8 +3,8 @@
 name: Arch-2-CosmoBattle - CMake on a single platform
 
 on:
-  #label:
-  #  types: [created, edited]
+  label:
+    types: [created, edited]
   push:
     branches: [ "master" ]
     paths:

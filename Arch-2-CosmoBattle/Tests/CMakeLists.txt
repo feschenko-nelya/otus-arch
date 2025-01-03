@@ -26,6 +26,7 @@ add_executable(Tests TestUObject.cpp
     ../CosmoBattle/UObjectException.cpp ../CosmoBattle/UObjectException.h
     ../CosmoBattle/MovingObject.cpp ../CosmoBattle/MovingObject.h
     TestMovingObject.cpp
+    TestMoveCommand.cpp
 )
 
 target_include_directories(

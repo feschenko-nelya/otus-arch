@@ -1,11 +1,6 @@
 #include "MovingObject.h"
 #include <cmath>
 
-float Angle::getRad() const
-{
-    return value * M_PI / 180;
-}
-
 MovingObject::MovingObject(IUObject *object)
 {
     _object = object;

@@ -13,32 +13,32 @@ TEST(RotatingObject, GetAngle)
     Angle angle = rotatingObject.getAngle();
 
     EXPECT_EQ(angle.value, 45);
-    EXPECT_NEAR(angle.getRad(), 0.7853981634, 0.00000000001);
+    EXPECT_NEAR(angle.getRad(), 0.7853981634, 0.000001);
 }
 
 TEST(RotatingObject, GetAngularVelocity)
 {
     UObject object;
     object.setProperty("angle", Angle{45});
-    object.setProperty("angularVelocity", 1);
+    object.setProperty("angularVelocity", Angle{1});
 
     RotatingObject rotatingObject(&object);
 
-    const int angularVelocity = rotatingObject.getAngularVelocity();
+    const Angle angularVelocity = rotatingObject.getAngularVelocity();
 
-    EXPECT_EQ(angularVelocity, 1);
+    EXPECT_EQ(angularVelocity.value, 1);
 }
 
 TEST(RotatingObject, SetAngle)
 {
     UObject object;
     object.setProperty("angle", Angle{45});
-    object.setProperty("angularVelocity", 1);
+    object.setProperty("angularVelocity", Angle{1});
 
     RotatingObject rotatingObject(&object);
 
     Angle angle = rotatingObject.getAngle();
-    const int angularVelocity = rotatingObject.getAngularVelocity();
+    const Angle angularVelocity = rotatingObject.getAngularVelocity();
 
     rotatingObject.setAngle(angle.plus(angularVelocity));
 

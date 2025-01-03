@@ -3,14 +3,10 @@
 name: Arch-2-CosmoBattle - CMake on a single platform
 
 on:
-  #label:
-  #  types: [created, edited]
   push:
-    branches: [ "main" ]
     paths:
     - 'Arch-2-CosmoBattle/**'
   pull_request:
-    branches: [ "main" ]
     paths:
     - 'Arch-2-CosmoBattle/**'
 

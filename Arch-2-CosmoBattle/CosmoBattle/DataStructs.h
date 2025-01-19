@@ -1,10 +1,26 @@
 #ifndef DATASTRUCTS_H
 #define DATASTRUCTS_H
 
-struct Vector
+#include "UObject.h"
+#include <set>
+
+class Vector : private UObject
 {
-    int x = 0;
-    int y = 0;
+public:
+    Vector();
+    ~Vector() = default;
+
+    float getCoordinate(const std::string &name) const;
+    void setCoordinate(const std::string &name, const float value);
+
+    Vector &plus(const Vector &vector);
+    std::string toString() const;
+
+protected:
+    Vector(unsigned short dimension);
+
+private:
+    unsigned short _dimension = 0;
 };
 
 struct Angle

@@ -6,41 +6,60 @@
 TEST(MovingObject, GetLocation)
 {
     UObject object;
-    object.setProperty("location", Vector{12, 5});
+
+    Vector baseLocation;
+    baseLocation.setCoordinate("x", 12);
+    baseLocation.setCoordinate("y", 5);
+
+    object.setProperty("location", baseLocation);
 
     MovingObject movingObject(&object);
 
     Vector location = movingObject.getLocation();
 
-    EXPECT_EQ(location.x, 12);
-    EXPECT_EQ(location.y, 5);
+    EXPECT_EQ(location.getCoordinate("x"), 12);
+    EXPECT_EQ(location.getCoordinate("y"), 5);
 }
 
 TEST(MovingObject, SetLocation)
 {
     UObject object;
-    object.setProperty("location", Vector{12, 5});
+
+    Vector baseLocation;
+    baseLocation.setCoordinate("x", 12);
+    baseLocation.setCoordinate("y", 5);
+
+    object.setProperty("location", baseLocation);
 
     MovingObject movingObject(&object);
 
-    movingObject.setLocation(Vector{5, 8});
+    Vector newLocation;
+    newLocation.setCoordinate("x", 5);
+    newLocation.setCoordinate("y", 8);
+
+    movingObject.setLocation(newLocation);
 
     Vector location = movingObject.getLocation();
 
-    EXPECT_EQ(location.x, 5);
-    EXPECT_EQ(location.y, 8);
+    EXPECT_EQ(location.getCoordinate("x"), 5);
+    EXPECT_EQ(location.getCoordinate("y"), 8);
 }
 
 TEST(MovingObject, GetVelocity)
 {
     UObject object;
-    object.setProperty("velocity", Vector{-7, 3});
+
+    Vector newLocation;
+    newLocation.setCoordinate("x", -7);
+    newLocation.setCoordinate("y", 3);
+
+    object.setProperty("velocity", newLocation);
     object.setProperty("angle", Angle{0});
 
     MovingObject movingObject(&object);
 
     Vector velocity = movingObject.getVelocity();
 
-    EXPECT_EQ(velocity.x, -7);
-    EXPECT_EQ(velocity.y, 0);
+    EXPECT_EQ(velocity.getCoordinate("x"), -7);
+    EXPECT_EQ(velocity.getCoordinate("y"), 0);
 }

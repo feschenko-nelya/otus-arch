@@ -19,7 +19,24 @@ void UObject::setProperty(const std::string &name, const std::any &value)
     _properties[name] = value;
 }
 
-int UObject::getPropertyInt(const std::string &name) const
+bool UObject::hasProperty(const std::string &name) const
 {
-    return std::any_cast<int>(getProperty(name));
+    return (_properties.find(name) != _properties.end());
+}
+
+int UObject::getPropertiesCount() const
+{
+    return _properties.size();
+}
+
+std::set<std::string> UObject::getPropertiesNames() const
+{
+    std::set<std::string> names;
+
+    for (auto it = _properties.cbegin(); it != _properties.cend(); ++it)
+    {
+        names.insert(it->first);
+    }
+
+    return names;
 }

@@ -27,15 +27,3 @@ TEST(UObject, PropertyExist)
     ASSERT_TRUE(value.has_value() == true);
     ASSERT_TRUE(std::any_cast<int>(value) == 5);
 }
-
-TEST(UObject, IntProperty)
-{
-    UObject obj;
-
-    obj.setProperty("value", 5);
-
-    int value = obj.getPropertyInt("value");
-
-    ASSERT_TRUE(value == 5);
-}
-

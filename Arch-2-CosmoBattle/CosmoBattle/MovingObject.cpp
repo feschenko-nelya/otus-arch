@@ -21,6 +21,11 @@ Vector MovingObject::getVelocity()
     Vector velocity = std::any_cast<Vector>(_object->getProperty("velocity"));
     Angle angle = std::any_cast<Angle>(_object->getProperty("angle"));
 
-    return {static_cast<int>(velocity.x * cos(angle.getRad())),
-            static_cast<int>(velocity.y * sin(angle.getRad()))};
+    const float rad = angle.getRad();
+
+    Vector result = velocity;
+    result.setCoordinate("x", velocity.getCoordinate("x") * cos(rad));
+    result.setCoordinate("y", velocity.getCoordinate("y") * sin(rad));
+
+    return result;
 }

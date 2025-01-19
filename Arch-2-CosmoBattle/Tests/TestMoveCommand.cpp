@@ -8,8 +8,17 @@
 TEST(MoveCommand, Execute)
 {
     UObject object;
-    object.setProperty("location", Vector{12, 5});
-    object.setProperty("velocity", Vector{-7, 3});
+
+    Vector baseLocation;
+    baseLocation.setCoordinate("x", 12);
+    baseLocation.setCoordinate("y", 5);
+
+    Vector baseVelocity;
+    baseVelocity.setCoordinate("x", -7);
+    baseVelocity.setCoordinate("y", 3);
+
+    object.setProperty("location", baseLocation);
+    object.setProperty("velocity", baseVelocity);
     object.setProperty("angle", Angle{0});
 
     MovingObject movingObject(&object);
@@ -20,15 +29,24 @@ TEST(MoveCommand, Execute)
 
     auto location = movingObject.getLocation();
 
-    EXPECT_EQ(location.x, 5);
-    EXPECT_EQ(location.y, 5);
+    EXPECT_EQ(location.getCoordinate("x"), 5);
+    EXPECT_EQ(location.getCoordinate("y"), 5);
 }
 
 TEST(MoveCommand, GetLocationException)
 {
     UObject object;
-    object.setProperty("location1", Vector{12, 5});
-    object.setProperty("velocity", Vector{-7, 3});
+
+    Vector baseLocation;
+    baseLocation.setCoordinate("x", 12);
+    baseLocation.setCoordinate("y", 5);
+
+    Vector baseVelocity;
+    baseVelocity.setCoordinate("x", -7);
+    baseVelocity.setCoordinate("y", 3);
+
+    object.setProperty("location1", baseLocation);
+    object.setProperty("velocity", baseVelocity);
     object.setProperty("angle", Angle{0});
 
     MovingObject movingObject(&object);
@@ -41,8 +59,18 @@ TEST(MoveCommand, GetLocationException)
 TEST(MoveCommand, GetVelocityException)
 {
     UObject object;
-    object.setProperty("location", Vector{12, 5});
-    object.setProperty("velocity1", Vector{-7, 3});
+
+    Vector baseLocation;
+    baseLocation.setCoordinate("x", 12);
+    baseLocation.setCoordinate("y", 5);
+
+    Vector baseVelocity;
+    baseVelocity.setCoordinate("x", -7);
+    baseVelocity.setCoordinate("y", 3);
+
+
+    object.setProperty("location", baseLocation);
+    object.setProperty("velocity1", baseVelocity);
     object.setProperty("angle", Angle{0});
 
     MovingObject movingObject(&object);

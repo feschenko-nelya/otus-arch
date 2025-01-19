@@ -4,6 +4,7 @@
 #include <any>
 #include <string>
 #include <unordered_map>
+#include <set>
 
 class IUObject
 {
@@ -17,12 +18,15 @@ class UObject : public IUObject
 {
 public:
     UObject() = default;
-    ~UObject() = default;
+    virtual ~UObject() = default;
 
     std::any getProperty(const std::string &name) const override;
     void setProperty(const std::string &name, const std::any &value) override;
 
-    int getPropertyInt(const std::string &name) const;
+protected:
+    bool hasProperty(const std::string &name) const;
+    int getPropertiesCount() const;
+    std::set<std::string> getPropertiesNames() const;
 
 private:
     std::unordered_map<std::string, std::any> _properties;

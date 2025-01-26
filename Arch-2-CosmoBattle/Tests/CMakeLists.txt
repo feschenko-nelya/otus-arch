@@ -35,6 +35,9 @@ add_executable(Tests TestUObject.cpp
     TestRotatingObject.cpp
     TestRotateCommand.cpp
     TestVector.cpp
+    TestLogCommand.cpp
+    ../CosmoBattle/LogCommand.cpp ../CosmoBattle/LogCommand.h
+
 )
 
 target_include_directories(
@@ -51,3 +54,5 @@ add_test(NAME MovingObject COMMAND Tests)
 add_test(NAME MoveCommand COMMAND Tests)
 add_test(NAME RotatingObject COMMAND Tests)
 add_test(NAME RotateCommand COMMAND Tests)
+add_test(NAME LogCommand COMMAND Tests)
+

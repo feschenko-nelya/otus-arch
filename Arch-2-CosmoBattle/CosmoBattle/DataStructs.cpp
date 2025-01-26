@@ -24,7 +24,7 @@ void Vector::setCoordinate(const std::string &name, const float value)
 {
     if (!hasProperty(name) && (getPropertiesCount() == _dimension))
     {
-        throw new VectorOutOfDimensionException(name, getPropertiesNames());
+        throw VectorOutOfDimensionException(name, getPropertiesNames());
     }
 
     setProperty(name, value);
@@ -34,7 +34,7 @@ Vector &Vector::plus(const Vector &vector)
 {
     if (_dimension != vector._dimension)
     {
-        throw new VectorOperationException("plus", toString());
+        throw VectorOperationException("plus", toString());
     }
 
     const auto propertiesNames = getPropertiesNames();

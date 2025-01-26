@@ -19,7 +19,7 @@ TEST(ExceptionCommand, WriteToLogExecute)
 
     UObjectAbsentPropertyException exc("property");
 
-    WriteExceptionToLogCommand cmd(&exc);
+    WriteExceptionToLogCommand cmd(exc);
 
     std::stringbuf newCoutBuf(std::ios::out);
     std::cout.rdbuf(std::addressof(newCoutBuf));

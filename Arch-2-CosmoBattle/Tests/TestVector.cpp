@@ -37,30 +37,8 @@ TEST(Vector, PlusException)
     ASSERT_NO_THROW(vector3d.setCoordinate("y", 2));
     ASSERT_NO_THROW(vector3d.setCoordinate("z", 3));
 
-    try
-    {
-        vector3d.setCoordinate("a", 4);
-    }
-    catch (VectorOutOfDimensionException *ex)
-    {
-    }
-    catch(...)
-    {
-        ADD_FAILURE();
-    }
-
-    try
-    {
-        vector2d.plus(vector3d);
-    }
-    catch (VectorOperationException *ex)
-    {
-
-    }
-    catch(...)
-    {
-        ADD_FAILURE();
-    }
+    ASSERT_THROW(vector3d.setCoordinate("a", 4), VectorOutOfDimensionException);
+    ASSERT_THROW(vector2d.plus(vector3d), VectorOperationException);
 
     Vector vector2d_2;
     vector2d_2.setCoordinate("x", 4);

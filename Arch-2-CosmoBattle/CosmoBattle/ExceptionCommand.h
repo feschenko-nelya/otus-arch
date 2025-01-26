@@ -2,18 +2,19 @@
 #define EXCEPTIONCOMMAND
 
 #include <exception>
+#include <string>
 
 #include "ICommand.h"
 
 class WriteExceptionToLogCommand : public ICommand
 {
 public:
-    WriteExceptionToLogCommand(std::exception *ex);
+    WriteExceptionToLogCommand(const std::exception &ex);
 
     void execute() override;
 
 private:
-    std::exception *_ex = nullptr;
+    std::string _excText;
 
 };
 

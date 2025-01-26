@@ -18,7 +18,7 @@ void AbstractLogCommand::execute()
     }
     else
     {
-        throw new LogCommandException("Log stream is undefined.");
+        throw LogCommandException("Log stream is undefined.");
     }
 }
 
@@ -46,7 +46,7 @@ std::ostream *FileLogCommand::getOstream()
 {
     if (!_fileStream->is_open())
     {
-        throw new LogCommandException("Log file stream is not opened.");
+        throw LogCommandException("Log file stream is not opened.");
     }
 
     return _fileStream.get();

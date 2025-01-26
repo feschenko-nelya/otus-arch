@@ -2,13 +2,7 @@
 
 CommandQueue::~CommandQueue()
 {
-    while (!_cmdQueue.empty())
-    {
-        auto cmd = _cmdQueue.front();
-        delete cmd;
-
-        _cmdQueue.pop();
-    }
+    clear();
 }
 
 CommandQueue &CommandQueue::inst()
@@ -42,6 +36,19 @@ void CommandQueue::add(ICommand *cmd)
         _cmdQueue.push(cmd);
 
         ++_count;
+    }
+}
+
+void CommandQueue::clear()
+{
+    while (!_cmdQueue.empty())
+    {
+        auto cmd = _cmdQueue.front();
+        delete cmd;
+
+        _cmdQueue.pop();
+
+        --_count;
     }
 }
 

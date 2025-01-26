@@ -16,6 +16,7 @@ public:
     void add(ICommand *cmd);
     void execute() override;
     int count() const;
+    void clear();
 
 private:
     CommandQueue() = default;

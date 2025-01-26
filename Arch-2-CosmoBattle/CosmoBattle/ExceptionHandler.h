@@ -18,9 +18,17 @@ public:
 private:
     ExceptionHandler();
 
-    std::unordered_map<size_t,
-                       std::unordered_map<size_t,
-                                          std::function<ICommand *(const ICommand *, const std::exception &ex)>>> _handlers;
+    enum class ResultCommand
+    {
+        WriteToLogCmdToCmdQueue,
+        WriteToLogCmd,
+    };
+
+    std::unordered_map<size_t, // cmd
+                       std::unordered_map<size_t, // exc
+                                          ResultCommand>> _handlers;
+
+    std::unordered_map<ResultCommand, std::function<ICommand *(const ICommand *, const std::exception &ex)>> _funcs;
 };
 
 #endif // EXCEPTIONHANDLER_H

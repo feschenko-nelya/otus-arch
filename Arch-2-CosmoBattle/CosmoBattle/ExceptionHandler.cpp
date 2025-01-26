@@ -1,29 +1,36 @@
 #include "ExceptionHandler.h"
 
 #include "ExceptionCommand.h"
+#include "CommandQueue.h"
 #include "MoveCommand.h"
+#include "RotateCommand.h"
 #include "UObjectException.h"
 #include <iostream>
 
 
 ExceptionHandler::ExceptionHandler()
 {
-    std::cout << "\nUObjectPropertyException: " << typeid(UObjectPropertyException).hash_code()
-              << "UObjectAbsentPropertyException: " << typeid(UObjectAbsentPropertyException).hash_code()
-              << "\n";
-
     _handlers[typeid(MoveCommand).hash_code()];
-    _handlers[typeid(MoveCommand).hash_code()][typeid(UObjectPropertyException).hash_code()] =
+    _handlers[typeid(MoveCommand).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] = ResultCommand::WriteToLogCmd;
+
+    _handlers[typeid(UObject).hash_code()];
+    _handlers[typeid(UObject).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] = ResultCommand::WriteToLogCmd;
+
+    _handlers[typeid(RotateCommand).hash_code()];
+    _handlers[typeid(RotateCommand).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] = ResultCommand::WriteToLogCmdToCmdQueue;
+
+    _funcs[ResultCommand::WriteToLogCmdToCmdQueue] =
               [](const ICommand *cmd, const std::exception &ex) -> ICommand *
               {
-                return new WriteExceptionToLogCommand(ex);
+                CommandQueue::inst().add(new WriteExceptionToLogCommand(ex));
+                return nullptr;
               };
 
-    _handlers[typeid(MoveCommand).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] =
+    _funcs[ResultCommand::WriteToLogCmd] =
         [](const ICommand *cmd, const std::exception &ex) -> ICommand *
-    {
-        return new WriteExceptionToLogCommand(ex);
-    };
+        {
+            return new WriteExceptionToLogCommand(ex);
+        };
 }
 
 ExceptionHandler &ExceptionHandler::inst()
@@ -41,7 +48,10 @@ ICommand *ExceptionHandler::handle(const ICommand *cmd, const std::exception &ex
         if (auto itEx = itCmd->second.find(typeid(exc).hash_code());
             itEx != itCmd->second.end())
         {
-            return itEx->second(cmd, exc);
+            if (auto itFunc = _funcs.find(itEx->second); itFunc != _funcs.end())
+            {
+                return itFunc->second(cmd, exc);
+            }
         }
     }
 

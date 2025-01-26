@@ -9,7 +9,7 @@
 
 class LogCommandException;
 
-class AbstractLogCommand : ICommand
+class AbstractLogCommand : public ICommand
 {
 public:
     AbstractLogCommand(const std::string &logString);

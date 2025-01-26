@@ -4,7 +4,8 @@
 #include "ICommand.h"
 
 #include <memory>
-#include <ostream>
+#include <fstream>
+#include <vector>
 
 class LogCommandException;
 
@@ -49,8 +50,6 @@ protected:
 private:
     std::unique_ptr<std::ofstream> _fileStream;
 };
-
-
 
 
 class LogCommandException : public std::exception

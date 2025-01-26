@@ -22,6 +22,7 @@ add_executable(CosmoBattle
   RotateCommand.h RotateCommand.cpp
   Settings.h Settings.cpp
   LogCommand.h LogCommand.cpp
+  ExceptionCommand.h ExceptionCommand.cpp
 )
 
 include(GNUInstallDirs)

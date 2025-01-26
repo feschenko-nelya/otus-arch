@@ -37,6 +37,8 @@ add_executable(Tests TestUObject.cpp
     TestVector.cpp
     TestLogCommand.cpp
     ../CosmoBattle/LogCommand.cpp ../CosmoBattle/LogCommand.h
+    TestExceptionCommand.cpp
+    ../CosmoBattle/ExceptionCommand.cpp ../CosmoBattle/ExceptionCommand.h
 
 )
 
@@ -55,4 +57,5 @@ add_test(NAME MoveCommand COMMAND Tests)
 add_test(NAME RotatingObject COMMAND Tests)
 add_test(NAME RotateCommand COMMAND Tests)
 add_test(NAME LogCommand COMMAND Tests)
+add_test(NAME ExceptionCommand COMMAND Tests)
 

@@ -1,7 +1,6 @@
 #include "LogCommand.h"
 
 #include <iostream>
-#include <fstream>
 
 #include "Settings.h"
 
@@ -52,7 +51,6 @@ std::ostream *FileLogCommand::getOstream()
 
     return _fileStream.get();
 }
-
 
 
 LogCommandException::LogCommandException(const std::string &text)

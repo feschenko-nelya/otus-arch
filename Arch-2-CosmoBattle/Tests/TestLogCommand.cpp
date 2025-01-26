@@ -33,4 +33,6 @@ TEST(LogCommand, FileLogExecute)
     EXPECT_EQ(log_line, testLog);
 
     ifs.close();
+
+    std::remove(Settings::inst().getLogFile().c_str());
 }

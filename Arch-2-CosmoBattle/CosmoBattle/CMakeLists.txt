@@ -24,6 +24,7 @@ add_executable(CosmoBattle
   LogCommand.h LogCommand.cpp
   ExceptionCommand.h ExceptionCommand.cpp
   CommandQueue.h CommandQueue.cpp
+  ExceptionHandler.h ExceptionHandler.cpp
 )
 
 include(GNUInstallDirs)

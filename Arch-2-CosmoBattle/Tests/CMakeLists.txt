@@ -41,6 +41,8 @@ add_executable(Tests TestUObject.cpp
     ../CosmoBattle/ExceptionCommand.cpp ../CosmoBattle/ExceptionCommand.h
     TestCommandQueue.cpp
     ../CosmoBattle/CommandQueue.cpp ../CosmoBattle/CommandQueue.h
+    TestExceptionHandler.cpp
+    ../CosmoBattle/ExceptionHandler.cpp ../CosmoBattle/ExceptionHandler.h
 
 )
 

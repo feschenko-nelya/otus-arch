@@ -10,7 +10,7 @@ void MoveCommand::execute()
 {
     if (_movingObj.expired())
     {
-        throw UObjectExpired();
+        throw CommandExpired();
     }
 
     auto movObj = _movingObj.lock();

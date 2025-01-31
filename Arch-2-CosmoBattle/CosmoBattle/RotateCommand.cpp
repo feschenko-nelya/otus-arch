@@ -12,7 +12,7 @@ void RotateCommand::execute()
 {
     if (_rotatingObj.expired())
     {
-        throw UObjectExpired();
+        throw CommandExpired();
     }
 
     auto rotatingObj = _rotatingObj.lock();

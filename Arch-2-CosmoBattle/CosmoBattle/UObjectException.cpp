@@ -64,3 +64,10 @@ const char *VectorOperationException::what() const noexcept
            .append("Vector's data:\n")
            .append(_vectorDataStr).c_str();
 }
+
+// -------------------------- CommandExpired --------------------------- //
+
+const char* CommandExpired::what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT
+{
+    return "Command is expired.";
+}

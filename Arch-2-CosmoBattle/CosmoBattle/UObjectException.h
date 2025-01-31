@@ -65,4 +65,13 @@ private:
 
 };
 
+class CommandExpired : public std::exception
+{
+public:
+    CommandExpired() = default;
+    ~CommandExpired() = default;
+
+    const char* what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT override;
+};
+
 #endif // UOBJECTEXCEPTION_H

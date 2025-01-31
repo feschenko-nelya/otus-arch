@@ -13,7 +13,7 @@ Vector MovingObject::getLocation()
 {
     if (_object.expired())
     {
-        throw UObjectExpired();
+        throw CommandExpired();
     }
 
     return std::any_cast<Vector>(_object.lock()->getProperty("location"));
@@ -23,7 +23,7 @@ void MovingObject::setLocation(const Vector &location)
 {
     if (_object.expired())
     {
-        throw UObjectExpired();
+        throw CommandExpired();
     }
 
     _object.lock()->setProperty("location", location);
@@ -33,7 +33,7 @@ Vector MovingObject::getVelocity()
 {
     if (_object.expired())
     {
-        throw UObjectExpired();
+        throw CommandExpired();
     }
 
     auto curObject = _object.lock();

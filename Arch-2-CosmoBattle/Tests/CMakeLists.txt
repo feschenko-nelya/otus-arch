@@ -29,6 +29,7 @@ add_executable(Tests TestUObject.cpp
     ../CosmoBattle/MoveCommand.cpp ../CosmoBattle/MoveCommand.h
     ../CosmoBattle/RotatingObject.h ../CosmoBattle/RotatingObject.cpp
     ../CosmoBattle/RotateCommand.h ../CosmoBattle/RotateCommand.cpp
+    ../CosmoBattle/RepeatCommand.h ../CosmoBattle/RepeatCommand.cpp
     ../CosmoBattle/Settings.h ../CosmoBattle/Settings.cpp
     TestMovingObject.cpp
     TestMoveCommand.cpp
@@ -43,7 +44,7 @@ add_executable(Tests TestUObject.cpp
     ../CosmoBattle/CommandQueue.cpp ../CosmoBattle/CommandQueue.h
     TestExceptionHandler.cpp
     ../CosmoBattle/ExceptionHandler.cpp ../CosmoBattle/ExceptionHandler.h
-
+    TestRepeatCommand.cpp
 )
 
 target_include_directories(

@@ -10,20 +10,11 @@ WriteExceptionToLogCommand::WriteExceptionToLogCommand(const std::exception &ex)
 
 void WriteExceptionToLogCommand::execute()
 {
-    if (Settings::inst().getLogWay() == LogWay::None)
-    {
-        return;
-    }
+    auto cmds = Settings::inst().getLogCommands(_excText);
 
-    if (Settings::inst().getLogWay() == LogWay::All || Settings::inst().getLogWay() == LogWay::Console)
+    while (!cmds.empty())
     {
-        ConsoleLogCommand cmd(_excText);
-        cmd.execute();
-    }
-
-    if (Settings::inst().getLogWay() == LogWay::All || Settings::inst().getLogWay() == LogWay::File)
-    {
-        FileLogCommand cmd(_excText);
-        cmd.execute();
+        cmds.front()->execute();
+        cmds.pop();
     }
 }

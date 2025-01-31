@@ -1,10 +1,11 @@
 #include "Settings.h"
 
+#include "LogCommand.h"
+
 Settings::Settings()
 {
     setProperty("vector_dimension", 2);
     setProperty("log_file", std::string("./log.log"));
-    setProperty("log_way", LogWay::All);
 }
 
 Settings &Settings::inst()
@@ -23,7 +24,12 @@ std::string Settings::getLogFile() const
     return std::any_cast<std::string>(getProperty("log_file"));
 }
 
-LogWay Settings::getLogWay() const
+std::queue<std::unique_ptr<AbstractLogCommand>> Settings::getLogCommands(const std::string &text) const
 {
-    return std::any_cast<LogWay>(getProperty("log_way"));
+    std::queue<std::unique_ptr<AbstractLogCommand>> cmds;
+
+    cmds.push(std::make_unique<ConsoleLogCommand>(text));
+    cmds.push(std::make_unique<FileLogCommand>(text));
+
+    return cmds;
 }

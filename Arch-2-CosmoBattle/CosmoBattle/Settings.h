@@ -3,15 +3,9 @@
 
 #include "UObject.h"
 
+#include <memory>
+#include <queue>
 #include <string>
-
-enum class LogWay
-{
-    None,
-    All,
-    Console,
-    File
-};
 
 
 class Settings : protected UObject
@@ -21,7 +15,7 @@ public:
 
     unsigned short getVectorDimension() const;
     std::string getLogFile() const;
-    LogWay getLogWay() const;
+    std::queue<std::unique_ptr<class AbstractLogCommand>> getLogCommands(const std::string &text) const;
 
 private:
     Settings();

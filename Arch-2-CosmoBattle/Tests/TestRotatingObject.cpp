@@ -5,10 +5,10 @@
 
 TEST(RotatingObject, GetAngle)
 {
-    UObject object;
-    object.setProperty("angle", Angle{45});
+    auto object = std::make_shared<UObject>();
+    object->setProperty("angle", Angle{45});
 
-    RotatingObject rotatingObject(&object);
+    RotatingObject rotatingObject(object);
 
     Angle angle = rotatingObject.getAngle();
 
@@ -18,11 +18,11 @@ TEST(RotatingObject, GetAngle)
 
 TEST(RotatingObject, GetAngularVelocity)
 {
-    UObject object;
-    object.setProperty("angle", Angle{45});
-    object.setProperty("angular_velocity", Angle{1});
+    auto object = std::make_shared<UObject>();
+    object->setProperty("angle", Angle{45});
+    object->setProperty("angular_velocity", Angle{1});
 
-    RotatingObject rotatingObject(&object);
+    RotatingObject rotatingObject(object);
 
     const Angle angularVelocity = rotatingObject.getAngularVelocity();
 
@@ -31,16 +31,16 @@ TEST(RotatingObject, GetAngularVelocity)
 
 TEST(RotatingObject, SetAngle)
 {
-    UObject object;
-    object.setProperty("angle", Angle{45});
-    object.setProperty("angular_velocity", Angle{1});
+    auto object = std::make_shared<UObject>();
+    object->setProperty("angle", Angle{45});
+    object->setProperty("angular_velocity", Angle{1});
 
-    RotatingObject rotatingObject(&object);
+    auto rotatingObject = std::make_shared<RotatingObject>(object);
 
-    Angle angle = rotatingObject.getAngle();
-    const Angle angularVelocity = rotatingObject.getAngularVelocity();
+    Angle angle = rotatingObject->getAngle();
+    const Angle angularVelocity = rotatingObject->getAngularVelocity();
 
-    rotatingObject.setAngle(angle.plus(angularVelocity));
+    rotatingObject->setAngle(angle.plus(angularVelocity));
 
-    EXPECT_EQ(rotatingObject.getAngle().value, 46);
+    EXPECT_EQ(rotatingObject->getAngle().value, 46);
 }

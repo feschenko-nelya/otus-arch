@@ -7,12 +7,12 @@
 class MoveCommand : public ICommand
 {
 public:
-    MoveCommand(IMovingObject *object);
+    MoveCommand(std::shared_ptr<IMovingObject> object);
 
     void execute() override;
 
 private:
-    IMovingObject *_movingObj = nullptr;
+    std::weak_ptr<IMovingObject> _movingObj;
 
 };
 

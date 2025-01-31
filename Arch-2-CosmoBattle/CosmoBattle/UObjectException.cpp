@@ -1,5 +1,10 @@
 #include "UObjectException.h"
 
+const char* UObjectExpired::what() const noexcept
+{
+    return "Object is expired.";
+}
+
 UObjectPropertyException::UObjectPropertyException(const std::string &propertyName)
 {
     _propertyName = propertyName;

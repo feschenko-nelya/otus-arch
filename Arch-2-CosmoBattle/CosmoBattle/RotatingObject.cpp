@@ -1,21 +1,37 @@
 #include "RotatingObject.h"
+#include "UObjectException.h"
 
-RotatingObject::RotatingObject(UObject *object)
+RotatingObject::RotatingObject(std::shared_ptr<UObject> object)
 {
     _object = object;
 }
 
 Angle RotatingObject::getAngle() const
 {
-    return std::any_cast<Angle>(_object->getProperty("angle"));
+    if (_object.expired())
+    {
+        throw UObjectExpired();
+    }
+
+    return std::any_cast<Angle>(_object.lock()->getProperty("angle"));
 }
 
 Angle RotatingObject::getAngularVelocity() const
 {
-    return std::any_cast<Angle>(_object->getProperty("angular_velocity"));
+    if (_object.expired())
+    {
+        throw UObjectExpired();
+    }
+
+    return std::any_cast<Angle>(_object.lock()->getProperty("angular_velocity"));
 }
 
 void RotatingObject::setAngle(const Angle &angle)
 {
-    _object->setProperty("angle", angle);
+    if (_object.expired())
+    {
+        throw UObjectExpired();
+    }
+
+    _object.lock()->setProperty("angle", angle);
 }

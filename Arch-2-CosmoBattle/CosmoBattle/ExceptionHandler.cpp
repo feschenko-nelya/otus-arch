@@ -22,7 +22,7 @@ ExceptionHandler::ExceptionHandler()
     _funcs[ResultCommand::WriteToLogCmdToCmdQueue] =
               [](const ICommand *cmd, const std::exception &ex) -> ICommand *
               {
-                CommandQueue::inst().add(new WriteExceptionToLogCommand(ex));
+        CommandQueue::inst().add(std::make_shared<WriteExceptionToLogCommand>(ex));
                 return nullptr;
               };
 

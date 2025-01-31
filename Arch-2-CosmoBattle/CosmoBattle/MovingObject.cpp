@@ -1,25 +1,44 @@
 #include "MovingObject.h"
+
+#include "UObjectException.h"
+
 #include <cmath>
 
-MovingObject::MovingObject(IUObject *object)
+MovingObject::MovingObject(std::shared_ptr<IUObject> object)
 {
     _object = object;
 }
 
 Vector MovingObject::getLocation()
 {
-    return std::any_cast<Vector>(_object->getProperty("location"));
+    if (_object.expired())
+    {
+        throw UObjectExpired();
+    }
+
+    return std::any_cast<Vector>(_object.lock()->getProperty("location"));
 }
 
 void MovingObject::setLocation(const Vector &location)
 {
-    _object->setProperty("location", location);
+    if (_object.expired())
+    {
+        throw UObjectExpired();
+    }
+
+    _object.lock()->setProperty("location", location);
 }
 
 Vector MovingObject::getVelocity()
 {
-    Vector velocity = std::any_cast<Vector>(_object->getProperty("velocity"));
-    Angle angle = std::any_cast<Angle>(_object->getProperty("angle"));
+    if (_object.expired())
+    {
+        throw UObjectExpired();
+    }
+
+    auto curObject = _object.lock();
+    Vector velocity = std::any_cast<Vector>(curObject->getProperty("velocity"));
+    Angle angle = std::any_cast<Angle>(curObject->getProperty("angle"));
 
     const float rad = angle.getRad();
 

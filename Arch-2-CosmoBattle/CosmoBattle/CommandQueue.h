@@ -1,6 +1,7 @@
 #ifndef COMMANDQUEUE_H
 #define COMMANDQUEUE_H
 
+#include <memory>
 #include <queue>
 
 #include "ICommand.h"
@@ -13,7 +14,7 @@ public:
 
     static CommandQueue &inst();
 
-    void add(ICommand *cmd);
+    void add(std::shared_ptr<ICommand> cmd);
     void execute() override;
     int count() const;
     void clear();
@@ -21,7 +22,7 @@ public:
 private:
     CommandQueue() = default;
 
-    std::queue<ICommand *> _cmdQueue;
+    std::queue<std::shared_ptr<ICommand>> _cmdQueue;
     int _count = 0;
 };
 

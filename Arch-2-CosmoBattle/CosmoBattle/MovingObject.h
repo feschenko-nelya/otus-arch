@@ -4,6 +4,7 @@
 #include "UObject.h"
 #include "DataStructs.h"
 
+#include <memory>
 #include <variant>
 
 class IMovingObject
@@ -18,7 +19,7 @@ public:
 class MovingObject : public IMovingObject
 {
 public:
-    MovingObject(IUObject *object);
+    MovingObject(std::shared_ptr<IUObject> object);
     ~MovingObject() = default;
 
     Vector getLocation() override;
@@ -27,7 +28,7 @@ public:
     Vector getVelocity() override;
 
 private:
-    IUObject *_object = nullptr;
+    std::weak_ptr<IUObject> _object;
 
 };
 

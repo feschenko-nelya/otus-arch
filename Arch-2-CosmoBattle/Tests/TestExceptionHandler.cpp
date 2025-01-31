@@ -11,12 +11,12 @@
 
 TEST(ExceptionHandler, Handle)
 {
-    UObject obj;
-    obj.setProperty("x", 0.9);
+    auto object = std::make_shared<UObject>();
+    object->setProperty("x", 0.9);
 
-    MovingObject moveObj(&obj);
+    auto moveObj = std::make_shared<MovingObject>(object);
 
-    auto moveCmd = std::make_unique<MoveCommand>(&moveObj);
+    auto moveCmd = std::make_shared<MoveCommand>(moveObj);
     try
     {
         moveCmd->execute();
@@ -30,8 +30,8 @@ TEST(ExceptionHandler, Handle)
         EXPECT_TRUE(excCmd.get() != nullptr);
     }
 
-    RotatingObject rotateObj(&obj);
-    auto rotateCmd = std::make_unique<RotateCommand>(&rotateObj);
+    auto rotateObj = std::make_shared<RotatingObject>(object);
+    auto rotateCmd = std::make_shared<RotateCommand>(rotateObj);
 
     try
     {

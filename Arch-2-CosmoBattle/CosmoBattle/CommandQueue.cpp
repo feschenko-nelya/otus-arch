@@ -16,12 +16,9 @@ void CommandQueue::execute()
 {
     if (!_cmdQueue.empty())
     {
-        if (auto cmd = _cmdQueue.front())
-        {
-            cmd->execute();
+        auto cmd = _cmdQueue.front();
 
-            delete cmd;
-        }
+        cmd->execute();
 
         --_count;
 
@@ -29,7 +26,7 @@ void CommandQueue::execute()
     }
 }
 
-void CommandQueue::add(ICommand *cmd)
+void CommandQueue::add(std::shared_ptr<ICommand> cmd)
 {
     if (cmd)
     {
@@ -43,13 +40,10 @@ void CommandQueue::clear()
 {
     while (!_cmdQueue.empty())
     {
-        auto cmd = _cmdQueue.front();
-        delete cmd;
-
         _cmdQueue.pop();
-
-        --_count;
     }
+
+    _count = 0;
 }
 
 int CommandQueue::count() const

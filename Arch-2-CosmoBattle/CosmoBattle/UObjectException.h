@@ -5,6 +5,15 @@
 #include <string>
 #include <set>
 
+class UObjectExpired : public std::exception
+{
+public:
+    UObjectExpired() = default;
+    ~UObjectExpired() = default;
+
+    const char* what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT override;
+};
+
 class UObjectPropertyException : public std::exception
 {
 public:

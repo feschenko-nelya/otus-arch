@@ -13,7 +13,7 @@ public:
     void execute() override;
 
 private:
-    std::weak_ptr<ICommand> _cmd;
+    std::shared_ptr<ICommand> _cmd;
 
 };
 

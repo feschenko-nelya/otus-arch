@@ -9,7 +9,7 @@
 #include "../CosmoBattle/CommandQueue.h"
 #include "../CosmoBattle/ExceptionHandler.h"
 
-TEST(ExceptionHandler, Handle)
+TEST(ExceptionHandler, HandleWriteLog)
 {
     auto object = std::make_shared<UObject>();
     object->setProperty("x", 0.9);
@@ -25,10 +25,16 @@ TEST(ExceptionHandler, Handle)
     }
     catch (std::exception &exc)
     {
-        std::unique_ptr<ICommand> excCmd(ExceptionHandler::inst().handle(moveCmd.get(), exc));
+        std::unique_ptr<ICommand> excCmd(ExceptionHandler::inst().handle(moveCmd, exc));
 
         EXPECT_TRUE(excCmd.get() != nullptr);
     }
+}
+
+TEST(ExceptionHandler, HandleWriteLogInQueue)
+{
+    auto object = std::make_shared<UObject>();
+    object->setProperty("x", 0.9);
 
     auto rotateObj = std::make_shared<RotatingObject>(object);
     auto rotateCmd = std::make_shared<RotateCommand>(rotateObj);
@@ -42,13 +48,18 @@ TEST(ExceptionHandler, Handle)
     {
         CommandQueue::inst().clear();
 
-        const int previuosCount = CommandQueue::inst().count();
+        const int previousCount = CommandQueue::inst().count();
 
-        std::unique_ptr<ICommand> excCmd(ExceptionHandler::inst().handle(rotateCmd.get(), exc));
+        std::unique_ptr<ICommand> excCmd(ExceptionHandler::inst().handle(rotateCmd, exc));
         EXPECT_TRUE(excCmd.get() == nullptr);
 
-        EXPECT_EQ(CommandQueue::inst().count(), previuosCount + 1);
+        EXPECT_EQ(CommandQueue::inst().count(), previousCount + 1);
 
         CommandQueue::inst().clear();
     }
+}
+
+TEST(ExceptionHandler, RepeatCmdInQueue)
+{
+
 }

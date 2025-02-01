@@ -37,6 +37,15 @@ public:
 
 };
 
+class UObjectOutOfSpace : public std::exception
+{
+public:
+    UObjectOutOfSpace() = default;
+    ~UObjectOutOfSpace() = default;
+
+    const char* what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT override;
+};
+
 class VectorOutOfDimensionException : public UObjectPropertyException
 {
 public:

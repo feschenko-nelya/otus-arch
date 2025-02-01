@@ -13,16 +13,13 @@ class ExceptionHandler
 {
 public:
     static ExceptionHandler &inst();
-    ~ExceptionHandler() = default;
+    virtual ~ExceptionHandler() = default;
 
     ICommand *handle(std::shared_ptr<ICommand> cmd, const std::exception &exc);
 
-private:
-    ExceptionHandler();
+protected:
 
-    void checkIn(const ICommand *cmd, const std::exception &exc);
-
-    enum class ResultCommand
+    enum class ResultFunction
     {
         WriteToLogCmdToCmdQueue,
         WriteToLogCmd,
@@ -31,9 +28,9 @@ private:
 
     std::unordered_map<size_t, // command
                        std::unordered_map<size_t, // exception
-                                          ResultCommand>> _handlers;
+                                          ResultFunction>> _handlers;
 
-    std::unordered_map<ResultCommand, std::function<ICommand *(std::shared_ptr<ICommand>, const std::exception &ex)>> _funcs;
+    std::unordered_map<ResultFunction, std::function<ICommand *(std::shared_ptr<ICommand>, const std::exception &ex)>> _funcs;
 
     struct CommandExceptionCounterData
     {
@@ -48,6 +45,10 @@ private:
     };
 
     std::set<CommandExceptionCounterData> _counter;
+
+    ExceptionHandler();
+    void checkIn(const ICommand *cmd, const std::exception &exc);
+
 };
 
 #endif // EXCEPTIONHANDLER_H

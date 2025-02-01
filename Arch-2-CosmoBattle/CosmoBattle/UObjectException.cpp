@@ -22,6 +22,12 @@ const char* UObjectAbsentPropertyException::what() const noexcept
     return std::string("The property '").append(_propertyName).append("' is absent.").c_str();
 }
 
+// --------------------------- UObjectOutOfSpace ----------------------------//
+
+const char* UObjectOutOfSpace::what() const noexcept
+{
+    return "Object is out of space.";
+}
 
 // --------------- VectorOutOfDimensionException ---------------- //
 

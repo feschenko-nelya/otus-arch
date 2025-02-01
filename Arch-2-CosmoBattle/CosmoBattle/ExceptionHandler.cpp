@@ -12,29 +12,29 @@
 ExceptionHandler::ExceptionHandler()
 {
     _handlers[typeid(MoveCommand).hash_code()];
-    _handlers[typeid(MoveCommand).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] = ResultCommand::WriteToLogCmd;
-    _handlers[typeid(MoveCommand).hash_code()][typeid(VectorOperationException).hash_code()] = ResultCommand::RepeatCmdInQueue;
+    _handlers[typeid(MoveCommand).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] = ResultFunction::WriteToLogCmd;
+    _handlers[typeid(MoveCommand).hash_code()][typeid(UObjectOutOfSpace).hash_code()] = ResultFunction::RepeatCmdInQueue;
 
     _handlers[typeid(UObject).hash_code()];
-    _handlers[typeid(UObject).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] = ResultCommand::WriteToLogCmd;
+    _handlers[typeid(UObject).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] = ResultFunction::WriteToLogCmd;
 
     _handlers[typeid(RotateCommand).hash_code()];
-    _handlers[typeid(RotateCommand).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] = ResultCommand::WriteToLogCmdToCmdQueue;
+    _handlers[typeid(RotateCommand).hash_code()][typeid(UObjectAbsentPropertyException).hash_code()] = ResultFunction::WriteToLogCmdToCmdQueue;
 
-    _funcs[ResultCommand::WriteToLogCmdToCmdQueue] =
+    _funcs[ResultFunction::WriteToLogCmdToCmdQueue] =
               [](std::shared_ptr<ICommand> cmd, const std::exception &ex) -> ICommand *
               {
                 CommandQueue::inst().add(std::make_shared<WriteExceptionToLogCommand>(ex));
                 return nullptr;
               };
 
-    _funcs[ResultCommand::WriteToLogCmd] =
+    _funcs[ResultFunction::WriteToLogCmd] =
         [](std::shared_ptr<ICommand> cmd, const std::exception &ex) -> ICommand *
         {
             return new WriteExceptionToLogCommand(ex);
         };
 
-    _funcs[ResultCommand::RepeatCmdInQueue] =
+    _funcs[ResultFunction::RepeatCmdInQueue] =
         [](std::shared_ptr<ICommand> cmd, const std::exception &ex) -> ICommand *
         {
             CommandQueue::inst().add(std::make_shared<RepeatCommand>(cmd));

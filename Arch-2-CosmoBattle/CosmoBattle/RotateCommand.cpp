@@ -19,5 +19,12 @@ void RotateCommand::execute()
     const Angle angle = rotatingObj->getAngle();
     const Angle angularVelocity = rotatingObj->getAngularVelocity();
 
-    rotatingObj->setAngle(angle.plus(angularVelocity));
+    const Angle newAngle = angle.plus(angularVelocity);
+
+    if (newAngle.value > 360 || newAngle.value < 0)
+    {
+        throw AngleIsInvalidException();
+    }
+
+    rotatingObj->setAngle(newAngle);
 }

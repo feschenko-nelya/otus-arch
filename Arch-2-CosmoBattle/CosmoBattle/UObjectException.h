@@ -74,6 +74,15 @@ private:
 
 };
 
+class AngleIsInvalidException : public std::exception
+{
+public:
+    AngleIsInvalidException() = default;
+    ~AngleIsInvalidException() = default;
+
+    const char* what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT override;
+};
+
 class CommandExpired : public std::exception
 {
 public:

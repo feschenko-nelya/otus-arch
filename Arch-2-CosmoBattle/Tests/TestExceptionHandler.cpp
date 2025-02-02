@@ -10,9 +10,11 @@
 #include "../CosmoBattle/MoveCommand.h"
 #include "../CosmoBattle/RotatingObject.h"
 #include "../CosmoBattle/RotateCommand.h"
+#include "../CosmoBattle/RepeatCommand.h"
 #include "../CosmoBattle/CommandQueue.h"
 #include "../CosmoBattle/ExceptionHandler.h"
 #include "../CosmoBattle/UObjectException.h"
+#include "../CosmoBattle/ExceptionCommand.h"
 
 TEST(ExceptionHandler, HandleWriteLog)
 {
@@ -105,5 +107,45 @@ TEST(ExceptionHandler, RepeatCmdInQueue)
         ASSERT_THROW(CommandQueue::inst().execute(), UObjectOutOfSpace);
 
         CommandQueue::inst().clear();
+    }
+}
+
+TEST(ExceptionHandler, RepeatThenLogCmd)
+{
+    auto object = std::make_shared<UObject>();
+    object->setProperty("angle", Angle{45});
+    object->setProperty("angular_velocity", Angle{3000});
+
+    auto rotatingObject = std::make_shared<RotatingObject>(object);
+
+    auto rotateCmd = std::make_shared<RotateCommand>(rotatingObject);
+
+    try
+    {
+        rotateCmd->execute();
+
+        FAIL();
+    }
+    catch (std::exception &exc)
+    {
+        std::unique_ptr<ICommand> excCmd(ExceptionHandler::inst().handle(rotateCmd, exc));
+        EXPECT_TRUE(excCmd.get() != nullptr);
+
+        auto cmdi = excCmd.get();
+        EXPECT_EQ(std::string(typeid(*cmdi).name()), std::string(typeid(RepeatCommand).name()));
+
+        try
+        {
+            cmdi->execute();
+            FAIL();
+        }
+        catch (std::exception &exc2)
+        {
+            std::unique_ptr<ICommand> excCmd(ExceptionHandler::inst().handle(rotateCmd, exc2));
+            EXPECT_TRUE(excCmd.get() != nullptr);
+
+            auto cmdi = excCmd.get();
+            EXPECT_EQ(std::string(typeid(*cmdi).name()), std::string(typeid(WriteExceptionToLogCommand).name()));
+        }
     }
 }

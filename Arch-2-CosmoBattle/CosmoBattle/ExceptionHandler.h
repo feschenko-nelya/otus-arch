@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <functional>
+#include <map>
 #include <memory>
 #include <set>
 #include <unordered_map>
@@ -24,27 +25,24 @@ protected:
         WriteToLogCmdToCmdQueue,
         WriteToLogCmd,
         RepeatCmdInQueue,
+        OneRepeatThenLogCmd,
     };
 
-    std::unordered_map<size_t, // command
-                       std::unordered_map<size_t, // exception
-                                          ResultFunction>> _handlers;
-
-    std::unordered_map<ResultFunction, std::function<ICommand *(std::shared_ptr<ICommand>, const std::exception &ex)>> _funcs;
-
-    struct CommandExceptionCounterData
+    struct CmdExcData
     {
         size_t cmd;
         size_t exc;
-        int count = 0;
 
-        bool operator < (const CommandExceptionCounterData& data) const
+        bool operator < (const CmdExcData &data) const
         {
-            return (cmd < data.cmd) && (exc < data.exc);
+            return ((cmd == data.cmd) && (exc < data.exc))
+                   || (cmd < data.cmd);
         }
     };
 
-    std::set<CommandExceptionCounterData> _counter;
+    std::map<CmdExcData, ResultFunction> _handlers;
+    std::map<ResultFunction, std::function<ICommand *(std::shared_ptr<ICommand>, const std::exception &ex)>> _funcs;
+    std::map<CmdExcData, int> _counter;
 
     ExceptionHandler();
     void checkIn(const ICommand *cmd, const std::exception &exc);

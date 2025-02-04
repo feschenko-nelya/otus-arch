@@ -29,6 +29,7 @@ protected:
         RepeatTwiceThenLogCmd,
     };
 
+    /// Данные по команде и исключению: хеш-код класса команды и исключения
     struct CmdExcData
     {
         size_t cmd;
@@ -43,6 +44,7 @@ protected:
 
     std::map<CmdExcData, ResultFunction> _handlers;
     std::map<ResultFunction, std::function<ICommand *(std::shared_ptr<ICommand>, const std::exception &ex)>> _funcs;
+    /// Счётчик команд и исключений
     std::map<CmdExcData, int> _counter;
 
     ExceptionHandler();

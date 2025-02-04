@@ -16,6 +16,10 @@ public:
     unsigned short getVectorDimension() const;
     std::string getLogFile() const;
     std::queue<std::unique_ptr<class AbstractLogCommand>> getLogCommands(const std::string &text) const;
+    int getSpaceLowXLimit() const;
+    int getSpaceLowYLimit() const;
+    int getSpaceHighXLimit() const;
+    int getSpaceHighYLimit() const;
 
 private:
     Settings();

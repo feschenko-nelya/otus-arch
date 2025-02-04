@@ -17,4 +17,18 @@ private:
 
 };
 
+class RepeatTwiceCommand : public ICommand
+{
+public:
+    RepeatTwiceCommand(std::shared_ptr<ICommand> cmd);
+    ~RepeatTwiceCommand() = default;
+
+    void execute() override;
+
+private:
+    std::shared_ptr<ICommand> _cmd;
+
+};
+
+
 #endif // REPEATCOMMAND_H

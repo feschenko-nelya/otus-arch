@@ -76,8 +76,8 @@ TEST(ExceptionHandler, RepeatCmdInQueue)
     baseLocation.setCoordinate("y", 5);
 
     Vector baseVelocity;
-    baseVelocity.setCoordinate("x", -70);
-    baseVelocity.setCoordinate("y", -30);
+    baseVelocity.setCoordinate("x", -7000);
+    baseVelocity.setCoordinate("y", -3000);
 
     object->setProperty("location", baseLocation);
     object->setProperty("velocity", baseVelocity);

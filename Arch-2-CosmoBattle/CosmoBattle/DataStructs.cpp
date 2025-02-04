@@ -4,6 +4,7 @@
 #include "Settings.h"
 
 #include <cmath>
+#include <iostream>
 
 Vector::Vector()
        :Vector(Settings::inst().getVectorDimension())
@@ -66,6 +67,15 @@ std::string Vector::toString() const
 
     return result;
 }
+
+bool Vector::isValid() const
+{
+    return (getCoordinate("x") >= Settings::inst().getSpaceLowXLimit())
+           && (getCoordinate("y") >= Settings::inst().getSpaceLowYLimit())
+           && (getCoordinate("x") <= Settings::inst().getSpaceHighXLimit())
+           && (getCoordinate("y") <= Settings::inst().getSpaceHighYLimit());
+}
+
 
 // ----------------- Angle -----------------------
 

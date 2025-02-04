@@ -2,7 +2,6 @@
 #define DATASTRUCTS_H
 
 #include "UObject.h"
-#include <set>
 
 class Vector : private UObject
 {
@@ -15,6 +14,7 @@ public:
 
     Vector &plus(const Vector &vector);
     std::string toString() const;
+    bool isValid() const;
 
 protected:
     Vector(unsigned short dimension);

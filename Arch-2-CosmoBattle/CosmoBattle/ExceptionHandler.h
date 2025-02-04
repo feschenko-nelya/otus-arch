@@ -26,6 +26,7 @@ protected:
         WriteToLogCmd,
         RepeatCmdInQueue,
         OneRepeatThenLogCmd,
+        RepeatTwiceThenLogCmd,
     };
 
     struct CmdExcData

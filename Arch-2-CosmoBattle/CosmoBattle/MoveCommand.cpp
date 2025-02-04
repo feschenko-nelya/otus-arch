@@ -21,10 +21,10 @@ void MoveCommand::execute()
 
     Vector newLocation = location.plus(velocity);
 
-    if ((newLocation.getCoordinate("x") < -20) || newLocation.getCoordinate("y") < -20)
+    if (!newLocation.isValid())
     {
         throw UObjectOutOfSpace();
     }
 
-    movObj->setLocation(location.plus(velocity));
+    movObj->setLocation(newLocation);
 }

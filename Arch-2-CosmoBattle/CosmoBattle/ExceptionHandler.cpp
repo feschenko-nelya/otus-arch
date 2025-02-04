@@ -23,7 +23,9 @@ ExceptionHandler::ExceptionHandler()
     _handlers[{typeid(RotateCommand).hash_code(),
                typeid(UObjectAbsentPropertyException).hash_code()}] = ResultFunction::WriteToLogCmdToCmdQueue;
     _handlers[{typeid(RotateCommand).hash_code(),
-               typeid(AngleIsInvalidException).hash_code()}] = ResultFunction::OneRepeatThenLogCmd;
+               typeid(AngleIsMoreThan360Exception).hash_code()}] = ResultFunction::OneRepeatThenLogCmd;
+    _handlers[{typeid(RotateCommand).hash_code(),
+               typeid(AngleIsLessThan0Exception).hash_code()}] = ResultFunction::RepeatTwiceThenLogCmd;
 
     _funcs[ResultFunction::WriteToLogCmdToCmdQueue] =
         [](std::shared_ptr<ICommand> cmd, const std::exception &ex) -> ICommand *
@@ -74,6 +76,12 @@ ExceptionHandler::ExceptionHandler()
 
             return nullptr;
         };
+
+    _funcs[ResultFunction::RepeatTwiceThenLogCmd] =
+        [](std::shared_ptr<ICommand> cmd, const std::exception &ex) -> ICommand *
+    {
+        return new RepeatTwiceCommand(cmd);
+    };
 }
 
 ExceptionHandler &ExceptionHandler::inst()

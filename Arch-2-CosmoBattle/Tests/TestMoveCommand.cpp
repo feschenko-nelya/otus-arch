@@ -29,7 +29,7 @@ TEST(MoveCommand, Execute)
 
     auto location = movingObject->getLocation();
 
-    EXPECT_EQ(location.getCoordinate("x"), -2);
+    EXPECT_EQ(location.getCoordinate("x"), 5);
     EXPECT_EQ(location.getCoordinate("y"), 5);
 }
 

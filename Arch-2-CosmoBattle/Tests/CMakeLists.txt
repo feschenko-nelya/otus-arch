@@ -40,7 +40,7 @@ add_executable(Tests main.cpp
     #TestMoveCommand.cpp
     TestRotatingObject.cpp
     TestRotateCommand.cpp
-    #TestVector.cpp
+    TestVector.cpp
     #TestLogCommand.cpp
     #TestExceptionCommand.cpp
     #TestCommandQueue.cpp

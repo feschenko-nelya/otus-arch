@@ -20,6 +20,7 @@ public:
 
 protected:
 
+    /// Виды ответов на исключения команд
     enum class ResultFunction
     {
         WriteToLogCmdToCmdQueue,
@@ -42,7 +43,9 @@ protected:
         }
     };
 
+    /// Распределение ответов на исключения команд
     std::map<CmdExcData, ResultFunction> _handlers;
+    /// Ответы на исключения команд
     std::map<ResultFunction, std::function<ICommand *(std::shared_ptr<ICommand>, const std::exception &ex)>> _funcs;
     /// Счётчик команд и исключений
     std::map<CmdExcData, int> _counter;

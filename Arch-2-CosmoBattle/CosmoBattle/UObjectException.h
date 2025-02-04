@@ -74,14 +74,24 @@ private:
 
 };
 
-class AngleIsInvalidException : public std::exception
+class AngleIsMoreThan360Exception : public std::exception
 {
 public:
-    AngleIsInvalidException() = default;
-    ~AngleIsInvalidException() = default;
+    AngleIsMoreThan360Exception() = default;
+    ~AngleIsMoreThan360Exception() = default;
 
     const char* what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT override;
 };
+
+class AngleIsLessThan0Exception : public std::exception
+{
+public:
+    AngleIsLessThan0Exception() = default;
+    ~AngleIsLessThan0Exception() = default;
+
+    const char* what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT override;
+};
+
 
 class CommandExpired : public std::exception
 {

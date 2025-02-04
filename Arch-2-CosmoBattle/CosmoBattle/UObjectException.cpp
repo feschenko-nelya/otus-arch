@@ -29,12 +29,20 @@ const char* UObjectOutOfSpace::what() const noexcept
     return "Object is out of space.";
 }
 
-// -------------------------- AngleIsInvalidException ----------------------- //
+// -------------------------- AngleIsMoreThan360Exception ----------------------- //
 
-const char* AngleIsInvalidException::what() const noexcept
+const char* AngleIsMoreThan360Exception::what() const noexcept
 {
     return "Angle is invalid: angle > 360 || angle < 0";
 }
+
+// -------------------------- AngleIsLessThan0Exception ----------------------- //
+
+const char* AngleIsLessThan0Exception::what() const noexcept
+{
+    return "Angle is invalid: angle < 0";
+}
+
 
 // --------------- VectorOutOfDimensionException ---------------- //
 

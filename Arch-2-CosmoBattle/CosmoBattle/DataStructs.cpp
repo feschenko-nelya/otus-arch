@@ -3,8 +3,13 @@
 #include "UObjectException.h"
 #include "Settings.h"
 
-#define M_PI 3.14159265358979323846
 #include <cmath>
+#ifdef M_PI
+double const PI = M_PI;
+#else
+double const PI = 4*std::atan(1);
+#endif
+
 #include <iostream>
 
 Vector::Vector()
@@ -82,7 +87,7 @@ bool Vector::isValid() const
 
 float Angle::getRad() const
 {
-    return value * M_PI / 180;
+    return value * PI / 180;
 }
 
 Angle Angle::plus(const Angle &angle) const

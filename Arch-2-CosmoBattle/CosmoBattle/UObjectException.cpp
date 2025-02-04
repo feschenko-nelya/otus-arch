@@ -88,7 +88,7 @@ const char *VectorOperationException::what() const noexcept
 
 // -------------------------- CommandExpired --------------------------- //
 
-const char* CommandExpired::what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT
+const char* CommandExpired::what() const noexcept
 {
     return "Command is expired.";
 }

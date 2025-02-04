@@ -40,7 +40,7 @@ jobs:
       run: cmake ${{env.TESTS_DIR}} -B ${{env.TESTS_DIR}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
       
     - name: Tests - Build
-      run: cmake --build ${{env.TESTS_DIR}}/build --config ${{env.BUILD_TYPE}} -DCMAKE_C_COMPILER='qcc'
+      run: cmake --build ${{env.TESTS_DIR}}/build --config ${{env.BUILD_TYPE}}
     
     - name: Tests - Process
-      run: ctest -C ${{env.BUILD_TYPE}} --progress --test-dir ${{env.TESTS_DIR}}/build -DCMAKE_C_COMPILER='qcc'
+      run: ctest -C ${{env.BUILD_TYPE}} --progress --test-dir ${{env.TESTS_DIR}}/build

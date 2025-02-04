@@ -41,7 +41,6 @@ add_executable(Tests main.cpp
     TestRotatingObject.cpp
     TestRotateCommand.cpp
     TestVector.cpp
-    #TestLogCommand.cpp падает именно на github
     TestExceptionCommand.cpp
     TestCommandQueue.cpp
     TestExceptionHandler.cpp
@@ -62,7 +61,6 @@ add_test(NAME MovingObject COMMAND Tests)
 add_test(NAME MoveCommand COMMAND Tests)
 add_test(NAME RotatingObject COMMAND Tests)
 add_test(NAME RotateCommand COMMAND Tests)
-#add_test(NAME LogCommand COMMAND Tests)
 add_test(NAME ExceptionCommand COMMAND Tests)
 add_test(NAME CommandQueue COMMAND Tests)
 add_test(NAME RepeatCommand COMMAND Tests)

@@ -42,7 +42,6 @@ add_executable(Tests
     TestRotateCommand.cpp
     TestVector.cpp
 
-
 )
 
 target_include_directories(

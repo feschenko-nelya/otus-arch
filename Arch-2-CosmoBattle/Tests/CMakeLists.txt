@@ -31,6 +31,7 @@ add_executable(Tests main.cpp
     ../CosmoBattle/RotateCommand.h ../CosmoBattle/RotateCommand.cpp
     ../CosmoBattle/RepeatCommand.h ../CosmoBattle/RepeatCommand.cpp
     ../CosmoBattle/Settings.h ../CosmoBattle/Settings.cpp
+    ../CosmoBattle/LogCommand.cpp ../CosmoBattle/LogCommand.h
     ../CosmoBattle/ExceptionCommand.cpp ../CosmoBattle/ExceptionCommand.h
     ../CosmoBattle/CommandQueue.cpp ../CosmoBattle/CommandQueue.h
     ../CosmoBattle/ExceptionHandler.cpp ../CosmoBattle/ExceptionHandler.h

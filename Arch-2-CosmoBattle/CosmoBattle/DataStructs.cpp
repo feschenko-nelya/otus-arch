@@ -4,6 +4,13 @@
 #include "Settings.h"
 
 #include <cmath>
+#ifdef M_PI
+double const PI = M_PI;
+#else
+double const PI = 4*std::atan(1);
+#endif
+
+#include <iostream>
 
 Vector::Vector()
        :Vector(Settings::inst().getVectorDimension())
@@ -24,7 +31,7 @@ void Vector::setCoordinate(const std::string &name, const float value)
 {
     if (!hasProperty(name) && (getPropertiesCount() == _dimension))
     {
-        throw new VectorOutOfDimensionException(name, getPropertiesNames());
+        throw VectorOutOfDimensionException(name, getPropertiesNames());
     }
 
     setProperty(name, value);
@@ -34,7 +41,7 @@ Vector &Vector::plus(const Vector &vector)
 {
     if (_dimension != vector._dimension)
     {
-        throw new VectorOperationException("plus", toString());
+        throw VectorOperationException("plus", toString());
     }
 
     const auto propertiesNames = getPropertiesNames();
@@ -67,11 +74,20 @@ std::string Vector::toString() const
     return result;
 }
 
+bool Vector::isValid() const
+{
+    return (getCoordinate("x") >= Settings::inst().getSpaceLowXLimit())
+           && (getCoordinate("y") >= Settings::inst().getSpaceLowYLimit())
+           && (getCoordinate("x") <= Settings::inst().getSpaceHighXLimit())
+           && (getCoordinate("y") <= Settings::inst().getSpaceHighYLimit());
+}
+
+
 // ----------------- Angle -----------------------
 
 float Angle::getRad() const
 {
-    return value * M_PI / 180;
+    return value * PI / 180;
 }
 
 Angle Angle::plus(const Angle &angle) const

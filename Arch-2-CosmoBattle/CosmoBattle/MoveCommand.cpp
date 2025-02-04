@@ -1,14 +1,30 @@
 #include "MoveCommand.h"
 
-MoveCommand::MoveCommand(IMovingObject *object)
+#include "UObjectException.h"
+
+MoveCommand::MoveCommand(std::shared_ptr<IMovingObject> object)
 {
     _movingObj = object;
 }
 
 void MoveCommand::execute()
 {
-    Vector location = _movingObj->getLocation();
-    Vector velocity = _movingObj->getVelocity();
+    if (_movingObj.expired())
+    {
+        throw CommandExpired();
+    }
 
-    _movingObj->setLocation(location.plus(velocity));
+    auto movObj = _movingObj.lock();
+
+    Vector location = movObj->getLocation();
+    Vector velocity = movObj->getVelocity();
+
+    Vector newLocation = location.plus(velocity);
+
+    if (!newLocation.isValid())
+    {
+        throw UObjectOutOfSpace();
+    }
+
+    movObj->setLocation(newLocation);
 }

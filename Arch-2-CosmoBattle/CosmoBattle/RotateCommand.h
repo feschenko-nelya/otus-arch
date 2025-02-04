@@ -2,18 +2,19 @@
 #define ROTATECOMMAND_H
 
 #include "ICommand.h"
+#include <memory>
 
 class IRotatingObject;
 
 class RotateCommand : public ICommand
 {
 public:
-    RotateCommand(IRotatingObject *object);
+    RotateCommand(std::shared_ptr<IRotatingObject> object);
 
     void execute() override;
 
 private:
-    IRotatingObject *_rotatingObj = nullptr;
+    std::weak_ptr<IRotatingObject> _rotatingObj;
 };
 
 #endif // ROTATECOMMAND_H

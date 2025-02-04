@@ -4,6 +4,8 @@
 #include "DataStructs.h"
 #include "UObject.h"
 
+#include <memory>
+
 class IRotatingObject
 {
 public:
@@ -15,14 +17,14 @@ public:
 class RotatingObject : public IRotatingObject
 {
 public:
-    RotatingObject(UObject *object);
+    RotatingObject(std::shared_ptr<UObject> object);
 
     Angle getAngle() const override;
     Angle getAngularVelocity() const override;
     void setAngle(const Angle &angle) override;
 
 private:
-    UObject *_object = nullptr;
+    std::weak_ptr<UObject> _object;
 
 };
 

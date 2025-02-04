@@ -22,7 +22,7 @@ TEST(UObject, PropertyExist)
 
     obj.setProperty("value", 5);
 
-    const std::any &value = obj.getProperty("value");
+    const std::any value = obj.getProperty("value");
 
     ASSERT_TRUE(value.has_value() == true);
     ASSERT_TRUE(std::any_cast<int>(value) == 5);

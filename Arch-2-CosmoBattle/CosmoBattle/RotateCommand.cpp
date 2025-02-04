@@ -1,16 +1,34 @@
 #include "RotateCommand.h"
 
 #include "RotatingObject.h"
+#include "UObjectException.h"
 
-RotateCommand::RotateCommand(IRotatingObject *object)
+RotateCommand::RotateCommand(std::shared_ptr<IRotatingObject> object)
 {
     _rotatingObj = object;
 }
 
 void RotateCommand::execute()
 {
-    const Angle angle = _rotatingObj->getAngle();
-    const Angle angularVelocity = _rotatingObj->getAngularVelocity();
+    if (_rotatingObj.expired())
+    {
+        throw CommandExpired();
+    }
 
-    _rotatingObj->setAngle(angle.plus(angularVelocity));
+    auto rotatingObj = _rotatingObj.lock();
+    const Angle angle = rotatingObj->getAngle();
+    const Angle angularVelocity = rotatingObj->getAngularVelocity();
+
+    const Angle newAngle = angle.plus(angularVelocity);
+
+    if (newAngle.value > 360)
+    {
+        throw AngleIsMoreThan360Exception();
+    }
+    else if (newAngle.value < 0)
+    {
+        throw AngleIsLessThan0Exception();
+    }
+
+    rotatingObj->setAngle(newAngle);
 }

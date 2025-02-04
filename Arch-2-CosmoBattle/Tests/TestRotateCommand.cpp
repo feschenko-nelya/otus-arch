@@ -7,55 +7,55 @@
 
 TEST(RotateCommand, Execute)
 {
-    UObject object;
-    object.setProperty("angle", Angle{45});
-    object.setProperty("angular_velocity", Angle{3});
+    auto object = std::make_shared<UObject>();
+    object->setProperty("angle", Angle{45});
+    object->setProperty("angular_velocity", Angle{3});
 
-    RotatingObject rotatingObject(&object);
+    auto rotatingObject = std::make_shared<RotatingObject>(object);
 
-    RotateCommand rotateCmd(&rotatingObject);
+    auto rotateCmd = std::make_shared<RotateCommand>(rotatingObject);
 
-    rotateCmd.execute();
+    rotateCmd->execute();
 
-    auto angle = rotatingObject.getAngle();
+    auto angle = rotatingObject->getAngle();
 
     EXPECT_EQ(angle.value, 48);
 }
 
 TEST(RotateCommand, GetAngleException)
 {
-    UObject object;
-    object.setProperty("angular_velocity", Angle{3});
+    auto object = std::make_shared<UObject>();
+    object->setProperty("angular_velocity", Angle{3});
 
-    RotatingObject rotatingObject(&object);
+    auto rotatingObject = std::make_shared<RotatingObject>(object);
 
-    RotateCommand rotateCmd(&rotatingObject);
+    auto rotateCmd = std::make_shared<RotateCommand>(rotatingObject);
 
-    ASSERT_THROW(rotateCmd.execute(), UObjectAbsentPropertyException);
+    ASSERT_THROW(rotateCmd->execute(), UObjectAbsentPropertyException);
 }
 
 TEST(RotateCommand, GetAngularVelocityException)
 {
-    UObject object;
-    object.setProperty("angle", Angle{45});
-    object.setProperty("angularVelocity", Angle{3});
+    auto object = std::make_shared<UObject>();
+    object->setProperty("angle", Angle{45});
+    object->setProperty("angularVelocity", Angle{3});
 
-    RotatingObject rotatingObject(&object);
+    auto rotatingObject = std::make_shared<RotatingObject>(object);
 
-    RotateCommand rotateCmd(&rotatingObject);
+    auto rotateCmd = std::make_shared<RotateCommand>(rotatingObject);
 
-    ASSERT_THROW(rotateCmd.execute(), UObjectAbsentPropertyException);
+    ASSERT_THROW(rotateCmd->execute(), UObjectAbsentPropertyException);
 }
 
 TEST(RotateCommand, SetAngleException)
 {
-    UObject object;
-    object.setProperty("angel", Angle{45});
-    object.setProperty("angularVelocity", Angle{3});
+    auto object = std::make_shared<UObject>();
+    object->setProperty("angel", Angle{45});
+    object->setProperty("angularVelocity", Angle{3});
 
-    RotatingObject rotatingObject(&object);
+    auto rotatingObject = std::make_shared<RotatingObject>(object);
 
-    RotateCommand rotateCmd(&rotatingObject);
+    auto rotateCmd = std::make_shared<RotateCommand>(rotatingObject);
 
-    ASSERT_THROW(rotateCmd.execute(), UObjectAbsentPropertyException);
+    ASSERT_THROW(rotateCmd->execute(), UObjectAbsentPropertyException);
 }

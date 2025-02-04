@@ -1,11 +1,15 @@
+#include <cmath>
 #include <gtest/gtest.h>
+#include <fstream>
 
 #include "../CosmoBattle/UObject.h"
-#include "../CosmoBattle/UObjectException.h"
+#include "../CosmoBattle/Settings.h"
+#include "../CosmoBattle/DataStructs.h"
 #include "../CosmoBattle/MovingObject.h"
 #include "../CosmoBattle/MoveCommand.h"
+#include "../CosmoBattle/RepeatCommand.h"
 
-TEST(MoveCommand, Execute)
+TEST(RepeatCommand, ExecuteOnce)
 {
     auto object = std::make_shared<UObject>();
 
@@ -22,10 +26,9 @@ TEST(MoveCommand, Execute)
     object->setProperty("angle", Angle{0});
 
     auto movingObject = std::make_shared<MovingObject>(object);
-
     auto moveCmd = std::make_shared<MoveCommand>(movingObject);
-
-    moveCmd->execute();
+    auto repeatCmd = std::make_shared<RepeatCommand>(moveCmd);
+    ASSERT_NO_THROW(repeatCmd->execute());
 
     auto location = movingObject->getLocation();
 
@@ -33,59 +36,57 @@ TEST(MoveCommand, Execute)
     EXPECT_EQ(location.getCoordinate("y"), 5);
 }
 
-TEST(MoveCommand, GetLocationException)
+TEST(RepeatCommand, ExecuteTwice)
 {
     auto object = std::make_shared<UObject>();
 
     Vector baseLocation;
-    baseLocation.setCoordinate("x", 12);
-    baseLocation.setCoordinate("y", 5);
+    baseLocation.setCoordinate("x", 0);
+    baseLocation.setCoordinate("y", 1);
 
     Vector baseVelocity;
-    baseVelocity.setCoordinate("x", -7);
+    baseVelocity.setCoordinate("x", 3);
     baseVelocity.setCoordinate("y", 3);
 
-    object->setProperty("location1", baseLocation);
+    object->setProperty("location", baseLocation);
+    object->setProperty("velocity", baseVelocity);
+    object->setProperty("angle", Angle{45});
+
+    auto movingObject = std::make_shared<MovingObject>(object);
+    auto moveCmd = std::make_shared<MoveCommand>(movingObject);
+    auto repeatCmd = std::make_shared<RepeatTwiceCommand>(moveCmd);
+
+    ASSERT_NO_THROW(repeatCmd->execute());
+
+    auto location = movingObject->getLocation();
+
+    EXPECT_EQ(std::round(location.getCoordinate("x")), 2);
+    EXPECT_EQ(std::round(location.getCoordinate("y")), 3);
+}
+
+TEST(RepeatCommand, ExecuteTwiceThenLog)
+{
+    auto object = std::make_shared<UObject>();
+
+    Vector baseLocation;
+    baseLocation.setCoordinate("x", 0);
+    baseLocation.setCoordinate("y", 1);
+
+    Vector baseVelocity;
+    baseVelocity.setCoordinate("x", Settings::inst().getSpaceHighXLimit() + 1);
+    baseVelocity.setCoordinate("y", Settings::inst().getSpaceHighYLimit() + 1);
+
+    object->setProperty("location", baseLocation);
     object->setProperty("velocity", baseVelocity);
     object->setProperty("angle", Angle{0});
 
     auto movingObject = std::make_shared<MovingObject>(object);
-
     auto moveCmd = std::make_shared<MoveCommand>(movingObject);
+    auto repeatCmd = std::make_shared<RepeatTwiceCommand>(moveCmd);
+    ASSERT_NO_THROW(repeatCmd->execute());
 
-    ASSERT_THROW(moveCmd->execute(), UObjectAbsentPropertyException);
-}
+    auto location = movingObject->getLocation();
 
-TEST(MoveCommand, GetVelocityException)
-{
-    auto object = std::make_shared<UObject>();
-
-    Vector baseLocation;
-    baseLocation.setCoordinate("x", 12);
-    baseLocation.setCoordinate("y", 5);
-
-    Vector baseVelocity;
-    baseVelocity.setCoordinate("x", -7);
-    baseVelocity.setCoordinate("y", 3);
-
-    object->setProperty("location", baseLocation);
-    object->setProperty("velocity1", baseVelocity);
-    object->setProperty("angle", Angle{0});
-
-    auto movingObject = std::make_shared<MovingObject>(object);
-
-    auto moveCmd = std::make_shared<MoveCommand>(movingObject);
-
-    ASSERT_THROW(moveCmd->execute(), UObjectAbsentPropertyException);
-}
-
-TEST(MoveCommand, SetLocationException)
-{
-    auto object = std::make_shared<UObject>();
-
-    auto movingObject = std::make_shared<MovingObject>(object);
-
-    auto moveCmd = std::make_shared<MoveCommand>(movingObject);
-
-    ASSERT_THROW(moveCmd->execute(), UObjectAbsentPropertyException);
+    EXPECT_EQ(std::round(location.getCoordinate("x")), 0);
+    EXPECT_EQ(std::round(location.getCoordinate("y")), 1);
 }

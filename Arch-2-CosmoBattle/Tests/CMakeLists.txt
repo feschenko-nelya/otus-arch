@@ -44,7 +44,7 @@ add_executable(Tests main.cpp
     #TestLogCommand.cpp
     #TestExceptionCommand.cpp
     TestCommandQueue.cpp
-    #TestExceptionHandler.cpp
+    TestExceptionHandler.cpp
     TestRepeatCommand.cpp
 )
 

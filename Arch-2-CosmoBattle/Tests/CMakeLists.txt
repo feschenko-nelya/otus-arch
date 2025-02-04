@@ -37,7 +37,7 @@ add_executable(Tests main.cpp
     ../CosmoBattle/ExceptionHandler.cpp ../CosmoBattle/ExceptionHandler.h
     TestUObject.cpp
     TestMovingObject.cpp
-    #TestMoveCommand.cpp
+    TestMoveCommand.cpp
     TestRotatingObject.cpp
     TestRotateCommand.cpp
     TestVector.cpp

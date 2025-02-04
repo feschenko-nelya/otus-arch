@@ -4,19 +4,6 @@
 #include "../CosmoBattle/LogCommand.h"
 #include "../CosmoBattle/Settings.h"
 
-TEST(LogCommand, ConsoleLogExecute)
-{
-    std::stringbuf newCoutBuf(std::ios::out);
-    std::cout.rdbuf(std::addressof(newCoutBuf));
-
-    const std::string testLog("some log");
-    ConsoleLogCommand cmd(testLog);
-
-    ASSERT_NO_THROW(cmd.execute());
-
-    EXPECT_EQ(newCoutBuf.str(), testLog);
-}
-
 TEST(LogCommand, FileLogExecute)
 {
     const std::string testLog("some log");

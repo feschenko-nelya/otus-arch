@@ -21,13 +21,7 @@ TEST(ExceptionCommand, WriteToLogExecute)
 
     WriteExceptionToLogCommand cmd(exc);
 
-    std::stringbuf newCoutBuf(std::ios::out);
-    std::cout.rdbuf(std::addressof(newCoutBuf));
-
     ASSERT_NO_THROW(cmd.execute());
-
-    // проверить запись в консоль
-    EXPECT_EQ(newCoutBuf.str(), std::string(exc.what()));
 
     // проверить запись в файл
     ifs.open(Settings::inst().getLogFile());

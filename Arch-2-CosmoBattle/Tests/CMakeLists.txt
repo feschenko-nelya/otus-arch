@@ -21,7 +21,7 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(Tests
+add_executable(Tests main.cpp
     ../CosmoBattle/DataStructs.cpp ../CosmoBattle/DataStructs.h
     ../CosmoBattle/UObject.cpp ../CosmoBattle/UObject.h
     ../CosmoBattle/UObjectException.cpp ../CosmoBattle/UObjectException.h
@@ -41,7 +41,11 @@ add_executable(Tests
     TestRotatingObject.cpp
     TestRotateCommand.cpp
     TestVector.cpp
-
+    TestLogCommand.cpp
+    TestExceptionCommand.cpp
+    TestCommandQueue.cpp
+    TestExceptionHandler.cpp
+    TestRepeatCommand.cpp
 )
 
 target_include_directories(

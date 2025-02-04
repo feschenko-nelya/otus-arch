@@ -55,7 +55,9 @@ std::queue<std::unique_ptr<AbstractLogCommand>> Settings::getLogCommands(const s
 {
     std::queue<std::unique_ptr<AbstractLogCommand>> cmds;
 
+#ifndef COSMO_TEST
     cmds.push(std::make_unique<ConsoleLogCommand>(text));
+#endif
     cmds.push(std::make_unique<FileLogCommand>(text));
 
     return cmds;

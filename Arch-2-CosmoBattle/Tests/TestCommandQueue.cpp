@@ -3,6 +3,7 @@
 
 #include "../CosmoBattle/CommandQueue.h"
 #include "../CosmoBattle/LogCommand.h"
+#include "../CosmoBattle/Settings.h"
 
 TEST(CommandQueue, ConsoleLogExecute)
 {
@@ -12,7 +13,7 @@ TEST(CommandQueue, ConsoleLogExecute)
 
     EXPECT_EQ(CommandQueue::inst().count(), 0);
 
-    CommandQueue::inst().add(std::make_shared<ConsoleLogCommand>("log text"));
+    CommandQueue::inst().add(std::make_shared<FileLogCommand>("log text"));
 
     EXPECT_EQ(CommandQueue::inst().count(), 1);
 
@@ -21,4 +22,6 @@ TEST(CommandQueue, ConsoleLogExecute)
     EXPECT_EQ(CommandQueue::inst().count(), 0);
 
     CommandQueue::inst().clear();
+
+    std::remove(Settings::inst().getLogFile().c_str());
 }

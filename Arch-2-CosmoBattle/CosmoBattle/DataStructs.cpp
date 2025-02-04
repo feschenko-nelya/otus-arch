@@ -3,6 +3,7 @@
 #include "UObjectException.h"
 #include "Settings.h"
 
+#define _USE_MATH_DEFINES
 #include <cmath>
 #include <iostream>
 

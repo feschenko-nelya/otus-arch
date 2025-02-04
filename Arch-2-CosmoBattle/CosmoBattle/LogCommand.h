@@ -58,7 +58,7 @@ public:
     LogCommandException(const std::string &text);
     ~LogCommandException() = default;
 
-    const char* what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_USE_NOEXCEPT override;
+    const char* what() const noexcept override;
 
 private:
     std::string _exceptionText;

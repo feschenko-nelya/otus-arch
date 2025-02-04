@@ -43,7 +43,7 @@ add_executable(Tests main.cpp
     TestVector.cpp
     #TestLogCommand.cpp
     #TestExceptionCommand.cpp
-    #TestCommandQueue.cpp
+    TestCommandQueue.cpp
     #TestExceptionHandler.cpp
     TestRepeatCommand.cpp
 )

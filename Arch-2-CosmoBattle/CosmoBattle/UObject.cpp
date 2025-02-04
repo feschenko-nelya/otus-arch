@@ -26,7 +26,7 @@ bool UObject::hasProperty(const std::string &name) const
 
 int UObject::getPropertiesCount() const
 {
-    return _properties.size();
+    return static_cast<int>(_properties.size());
 }
 
 std::set<std::string> UObject::getPropertiesNames() const

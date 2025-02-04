@@ -21,7 +21,7 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(Tests TestUObject.cpp
+add_executable(Tests
     ../CosmoBattle/DataStructs.cpp ../CosmoBattle/DataStructs.h
     ../CosmoBattle/UObject.cpp ../CosmoBattle/UObject.h
     ../CosmoBattle/UObjectException.cpp ../CosmoBattle/UObjectException.h
@@ -31,20 +31,17 @@ add_executable(Tests TestUObject.cpp
     ../CosmoBattle/RotateCommand.h ../CosmoBattle/RotateCommand.cpp
     ../CosmoBattle/RepeatCommand.h ../CosmoBattle/RepeatCommand.cpp
     ../CosmoBattle/Settings.h ../CosmoBattle/Settings.cpp
+    ../CosmoBattle/LogCommand.cpp ../CosmoBattle/LogCommand.h
+    ../CosmoBattle/ExceptionCommand.cpp ../CosmoBattle/ExceptionCommand.h
+    ../CosmoBattle/CommandQueue.cpp ../CosmoBattle/CommandQueue.h
+    ../CosmoBattle/ExceptionHandler.cpp ../CosmoBattle/ExceptionHandler.h
+    TestUObject.cpp
     TestMovingObject.cpp
     TestMoveCommand.cpp
     TestRotatingObject.cpp
     TestRotateCommand.cpp
     TestVector.cpp
-    TestLogCommand.cpp
-    ../CosmoBattle/LogCommand.cpp ../CosmoBattle/LogCommand.h
-    TestExceptionCommand.cpp
-    ../CosmoBattle/ExceptionCommand.cpp ../CosmoBattle/ExceptionCommand.h
-    TestCommandQueue.cpp
-    ../CosmoBattle/CommandQueue.cpp ../CosmoBattle/CommandQueue.h
-    TestExceptionHandler.cpp
-    ../CosmoBattle/ExceptionHandler.cpp ../CosmoBattle/ExceptionHandler.h
-    TestRepeatCommand.cpp
+
 )
 
 target_include_directories(

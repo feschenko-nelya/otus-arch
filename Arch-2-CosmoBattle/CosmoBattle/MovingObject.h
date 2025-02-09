@@ -5,7 +5,6 @@
 #include "DataStructs.h"
 
 #include <memory>
-#include <variant>
 
 class IMovingObject
 {

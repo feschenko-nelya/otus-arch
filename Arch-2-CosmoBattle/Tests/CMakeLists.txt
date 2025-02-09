@@ -45,6 +45,7 @@ add_executable(Tests main.cpp
     TestCommandQueue.cpp
     TestExceptionHandler.cpp
     TestRepeatCommand.cpp
+    TestCheckFuelCommand.cpp
 )
 
 target_include_directories(

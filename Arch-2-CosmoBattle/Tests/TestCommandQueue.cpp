@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <fstream>
 
 #include "../CosmoBattle/CommandQueue.h"
 #include "../CosmoBattle/LogCommand.h"

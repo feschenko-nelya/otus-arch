@@ -46,6 +46,15 @@ public:
     const char* what() const noexcept override;
 };
 
+class ObjectHasNoFuelException : public std::exception
+{
+public:
+    ObjectHasNoFuelException() = default;
+    ~ObjectHasNoFuelException() = default;
+
+    const char* what() const noexcept override;
+};
+
 class VectorOutOfDimensionException : public UObjectPropertyException
 {
 public:

@@ -31,4 +31,11 @@ struct Angle
     Angle plus(const Angle &angle) const;
 };
 
+struct Value
+{
+    int value = 0;
+
+    bool operator <= (const int &aValue) const;
+};
+
 #endif // DATASTRUCTS_H

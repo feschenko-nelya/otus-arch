@@ -29,6 +29,13 @@ const char* UObjectOutOfSpace::what() const noexcept
     return "Object is out of space.";
 }
 
+// -------------------------- ObjectHasNoFuelException ----------------------- //
+
+const char* ObjectHasNoFuelException::what() const noexcept
+{
+    return "Object has no fuel.";
+}
+
 // -------------------------- AngleIsMoreThan360Exception ----------------------- //
 
 const char* AngleIsMoreThan360Exception::what() const noexcept

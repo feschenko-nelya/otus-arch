@@ -3,22 +3,23 @@
 #include "../CosmoBattle/UObject.h"
 #include "../CosmoBattle/VehicleObject.h"
 #include "../CosmoBattle/CheckFuelCommand.h"
+#include "../CosmoBattle/UObjectException.h"
 
 TEST(CheckFuelCommand, Execute)
 {
     auto object = std::make_shared<UObject>();
 
     auto vehicle = std::make_shared<VehicleObject>(object);
-    vehicle->setFuel(100);
+    vehicle->setFuelLevel({100});
 
     auto cmd = std::make_shared<CheckFuelCommand>(vehicle);
-    cmd->execute();
+    ASSERT_NO_THROW(cmd->execute());
 
-    EXPECT_EQ(vehicle->hasFuel(), true);
+    EXPECT_EQ(vehicle->getFuelLevel().value, 100);
 
-    vehicle->setFuel(0);
+    vehicle->setFuelLevel({0});
 
-    cmd->execute();
+    ASSERT_THROW(cmd->execute(), ObjectHasNoFuelException);
 
-    EXPECT_EQ(vehicle->hasFuel(), false);
+    EXPECT_EQ(vehicle->getFuelLevel().value, 0);
 }

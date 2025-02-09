@@ -10,7 +10,6 @@ double const PI = M_PI;
 double const PI = 4*std::atan(1);
 #endif
 
-#include <iostream>
 
 Vector::Vector()
        :Vector(Settings::inst().getVectorDimension())
@@ -93,4 +92,12 @@ float Angle::getRad() const
 Angle Angle::plus(const Angle &angle) const
 {
     return Angle{value + angle.value};
+}
+
+
+// ---------------- Value ---------------------
+
+bool Value::operator <= (const int &aValue) const
+{
+    return value <= aValue;
 }

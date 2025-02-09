@@ -97,7 +97,19 @@ Angle Angle::plus(const Angle &angle) const
 
 // ---------------- Value ---------------------
 
+Value::Value(const int aValue)
+{
+    value = aValue;
+}
+
 bool Value::operator <= (const int &aValue) const
 {
     return value <= aValue;
+}
+
+Value &Value::operator - (const Value &aValue)
+{
+    value -= aValue.value;
+
+    return *this;
 }

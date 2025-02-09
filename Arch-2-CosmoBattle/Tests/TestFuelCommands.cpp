@@ -3,6 +3,7 @@
 #include "../CosmoBattle/UObject.h"
 #include "../CosmoBattle/VehicleObject.h"
 #include "../CosmoBattle/CheckFuelCommand.h"
+#include "../CosmoBattle/BurnFuelCommand.h"
 #include "../CosmoBattle/UObjectException.h"
 
 TEST(CheckFuelCommand, Execute)
@@ -34,11 +35,13 @@ TEST(BurnFuelCommand, Execute)
     auto cmd = std::make_shared<BurnFuelCommand>(vehicle);
     ASSERT_NO_THROW(cmd->execute());
 
-    EXPECT_EQ(vehicle->getFuelLevel().value, 99);
+    const Value newValue = Value(100) - vehicle->getFuelPerStep();
+
+    EXPECT_EQ(vehicle->getFuelLevel().value, newValue.value);
 
     vehicle->setFuelLevel({0});
 
-    ASSERT_THROW(cmd->execute(), ObjectHasNoFuelException);
+    ASSERT_NO_THROW(cmd->execute());
 
     EXPECT_EQ(vehicle->getFuelLevel().value, 0);
 }

@@ -11,6 +11,7 @@ public:
 
     virtual void setFuelLevel(const Value &value) = 0;
     virtual Value getFuelLevel() const = 0;
+    virtual Value getFuelPerStep() const = 0;
 };
 
 class VehicleObject : public IVehicleObject
@@ -20,6 +21,7 @@ public:
 
     void setFuelLevel(const Value &value) override;
     Value getFuelLevel() const override;
+    Value getFuelPerStep() const override;
 
 private:
     std::weak_ptr<UObject> _object;

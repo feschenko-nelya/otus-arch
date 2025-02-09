@@ -25,3 +25,8 @@ Value VehicleObject::getFuelLevel() const
 
     return std::any_cast<Value>(_object.lock()->getProperty("fuel_level"));
 }
+
+Value VehicleObject::getFuelPerStep() const
+{
+    return Value(3);
+}

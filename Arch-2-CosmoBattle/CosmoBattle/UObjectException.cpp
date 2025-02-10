@@ -29,6 +29,13 @@ const char* UObjectOutOfSpace::what() const noexcept
     return "Object is out of space.";
 }
 
+// -------------------------- ObjectHasNoFuelException ----------------------- //
+
+const char* ObjectHasNoFuelException::what() const noexcept
+{
+    return "Object has no fuel.";
+}
+
 // -------------------------- AngleIsMoreThan360Exception ----------------------- //
 
 const char* AngleIsMoreThan360Exception::what() const noexcept
@@ -91,4 +98,11 @@ const char *VectorOperationException::what() const noexcept
 const char* CommandExpired::what() const noexcept
 {
     return "Command is expired.";
+}
+
+// --------------------------- CommandException ------------------------ //
+
+const char* CommandException::what() const noexcept
+{
+    return "Command has exception.";
 }

@@ -33,8 +33,12 @@ add_executable(Tests main.cpp
     ../CosmoBattle/Settings.h ../CosmoBattle/Settings.cpp
     ../CosmoBattle/LogCommand.cpp ../CosmoBattle/LogCommand.h
     ../CosmoBattle/ExceptionCommand.cpp ../CosmoBattle/ExceptionCommand.h
+    ../CosmoBattle/CheckFuelCommand.cpp ../CosmoBattle/CheckFuelCommand.h
+    ../CosmoBattle/BurnFuelCommand.cpp ../CosmoBattle/BurnFuelCommand.h
+    ../CosmoBattle/VehicleObject.cpp ../CosmoBattle/VehicleObject.h
     ../CosmoBattle/CommandQueue.cpp ../CosmoBattle/CommandQueue.h
     ../CosmoBattle/ExceptionHandler.cpp ../CosmoBattle/ExceptionHandler.h
+    ../CosmoBattle/MacroCommand.cpp ../CosmoBattle/MacroCommand.h
     TestUObject.cpp
     TestMovingObject.cpp
     TestMoveCommand.cpp
@@ -45,6 +49,8 @@ add_executable(Tests main.cpp
     TestCommandQueue.cpp
     TestExceptionHandler.cpp
     TestRepeatCommand.cpp
+    TestFuelCommands.cpp
+    TestMacroCommand.cpp
 )
 
 target_include_directories(
@@ -65,3 +71,6 @@ add_test(NAME ExceptionCommand COMMAND Tests)
 add_test(NAME CommandQueue COMMAND Tests)
 add_test(NAME RepeatCommand COMMAND Tests)
 add_test(NAME ExceptionHandler COMMAND Tests)
+add_test(NAME CheckFuelCommand COMMAND Tests)
+add_test(NAME BurnFuelCommand COMMAND Tests)
+add_test(NAME MacroCommand COMMAND Tests)

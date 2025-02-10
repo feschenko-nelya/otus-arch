@@ -26,6 +26,11 @@ add_executable(CosmoBattle
   CommandQueue.h CommandQueue.cpp
   ExceptionHandler.h ExceptionHandler.cpp
   RepeatCommand.h RepeatCommand.cpp
+  VehicleObject.h VehicleObject.cpp
+  CheckFuelCommand.h CheckFuelCommand.cpp
+  BurnFuelCommand.h BurnFuelCommand.cpp
+  MacroCommand.h MacroCommand.cpp
+
 )
 
 include(GNUInstallDirs)

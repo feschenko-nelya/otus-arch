@@ -1,9 +1,7 @@
 #include <gtest/gtest.h>
 
-#include <fstream>
 #include <memory>
 #include <exception>
-#include <functional>
 
 #include "../CosmoBattle/UObject.h"
 #include "../CosmoBattle/MovingObject.h"

@@ -6,8 +6,6 @@
 #include "RepeatCommand.h"
 #include "RotateCommand.h"
 #include "UObjectException.h"
-#include <iostream>
-
 
 ExceptionHandler::ExceptionHandler()
 {

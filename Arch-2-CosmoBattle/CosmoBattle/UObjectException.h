@@ -101,7 +101,6 @@ public:
     const char* what() const noexcept override;
 };
 
-
 class CommandExpired : public std::exception
 {
 public:

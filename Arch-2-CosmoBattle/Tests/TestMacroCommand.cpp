@@ -1,8 +1,10 @@
 #include <gtest/gtest.h>
 
+#include "../CosmoBattle/MacroCommand.h"
 #include "../CosmoBattle/MovingObject.h"
 #include "../CosmoBattle/VehicleObject.h"
 #include "../CosmoBattle/DataStructs.h"
+#include "../CosmoBattle/UObjectException.h"
 
 TEST(MacroCommand, Execute)
 {
@@ -20,7 +22,7 @@ TEST(MacroCommand, Execute)
     object->setProperty("velocity", baseVelocity);
     object->setProperty("angle", Angle{0});
 
-    auto vehObject = std::make_shared<VehicleObject>();
+    auto vehObject = std::make_shared<VehicleObject>(object);
     vehObject->setFuelLevel(0);
 
     auto macroCom = std::make_shared<MacroMoveCommand>(object);
@@ -35,5 +37,5 @@ TEST(MacroCommand, Execute)
     EXPECT_EQ(location.getCoordinate("x"), 5);
     EXPECT_EQ(location.getCoordinate("y"), 5);
 
-    EXPECT_EQ(vehObject->getFuelLevel().value, 99);
+    EXPECT_EQ(vehObject->getFuelLevel().value, 100 - vehObject->getFuelPerStep().value);
 }

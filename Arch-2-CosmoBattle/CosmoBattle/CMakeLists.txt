@@ -29,6 +29,7 @@ add_executable(CosmoBattle
   VehicleObject.h VehicleObject.cpp
   CheckFuelCommand.h CheckFuelCommand.cpp
   BurnFuelCommand.h BurnFuelCommand.cpp
+  MacroCommand.h MacroCommand.cpp
 
 )
 

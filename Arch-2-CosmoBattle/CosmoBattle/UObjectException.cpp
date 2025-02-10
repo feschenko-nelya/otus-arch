@@ -99,3 +99,10 @@ const char* CommandExpired::what() const noexcept
 {
     return "Command is expired.";
 }
+
+// --------------------------- CommandException ------------------------ //
+
+const char* CommandException::what() const noexcept
+{
+    return "Command has exception.";
+}

@@ -111,4 +111,13 @@ public:
     const char* what() const noexcept override;
 };
 
+class CommandException : public std::exception
+{
+public:
+    CommandException() = default;
+    ~CommandException() = default;
+
+    const char* what() const noexcept override;
+};
+
 #endif // UOBJECTEXCEPTION_H

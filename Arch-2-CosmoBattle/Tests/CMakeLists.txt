@@ -38,6 +38,7 @@ add_executable(Tests main.cpp
     ../CosmoBattle/VehicleObject.cpp ../CosmoBattle/VehicleObject.h
     ../CosmoBattle/CommandQueue.cpp ../CosmoBattle/CommandQueue.h
     ../CosmoBattle/ExceptionHandler.cpp ../CosmoBattle/ExceptionHandler.h
+    ../CosmoBattle/MacroCommand.cpp ../CosmoBattle/MacroCommand.h
     TestUObject.cpp
     TestMovingObject.cpp
     TestMoveCommand.cpp
@@ -72,3 +73,4 @@ add_test(NAME RepeatCommand COMMAND Tests)
 add_test(NAME ExceptionHandler COMMAND Tests)
 add_test(NAME CheckFuelCommand COMMAND Tests)
 add_test(NAME BurnFuelCommand COMMAND Tests)
+add_test(NAME MacroCommand COMMAND Tests)
